@@ -51,6 +51,7 @@
 		F86BA80024899DA900BA0BAC /* AppDelegateInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateInjection.swift; sourceTree = "<group>"; };
 		F86BA80324899DD200BA0BAC /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
+		F86BA8082489A45700BA0BAC /* Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Diary.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 		F86BA7D42489937A00BA0BAC /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				F86BA8082489A45700BA0BAC /* Diary.entitlements */,
 				F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */,
 				F86BA7D52489937A00BA0BAC /* AppDelegate.swift */,
 				F86BA7D72489937A00BA0BAC /* SceneDelegate.swift */,
@@ -453,6 +455,7 @@
 			baseConfigurationReference = 1E72DD8E12AE0E51C728B7CD /* Pods-Diary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Diary/Diary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Diary/Preview Content\"";
 				DEVELOPMENT_TEAM = B3GJXRTH64;
@@ -474,6 +477,7 @@
 			baseConfigurationReference = 62D0C7AC5ADA91F281E080A9 /* Pods-Diary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Diary/Diary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Diary/Preview Content\"";
 				DEVELOPMENT_TEAM = B3GJXRTH64;

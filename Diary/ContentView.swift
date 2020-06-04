@@ -6,10 +6,15 @@
 //  Copyright © 2020 Joseph Hinkle. All rights reserved.
 //
 
+import UIKit
 import SwiftUI
+import CryptoKit
+import Resolver
+import FirebaseAuth
 
 struct ContentView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
+    @InjectedObject var userService: UserService
     
     @State private var showBrowseAppsModal = false
     @State var isLoading = false
@@ -39,14 +44,15 @@ struct ContentView: View {
                     Spacer()
                     Spacer()
                     SignInWithAppleToFirebase() { response in
-//                        self.isLoading = response == .loading
-//                        if response == .success {
-//                            self.userService.refresh()
+                        self.isLoading = response == .loading
+                        if response == .success {
+                            self.userService.refresh()
+                            
 //                            let scene = UIApplication.shared.connectedScenes.first
 //                            if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
 //                                sd.loadH()
 //                            }
-//                        }
+                        }
                     }
                     .frame(minWidth: 200, idealWidth: 250, maxWidth: 400, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center).padding(25)
                     Button(action: {
@@ -82,14 +88,11 @@ struct ContentView: View {
                 }
             }
         }.onAppear {
-//            if Auth.auth().currentUser != nil {
-//              let scene = UIApplication.shared.connectedScenes.first
-//              if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
-//                  sd.loadH()
-//              }
-//            } else {
-//                // needs to login
-//            }
+            if Auth.auth().currentUser != nil {
+                
+            } else {
+                // needs to login
+            }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
