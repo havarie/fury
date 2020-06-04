@@ -9,8 +9,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment (\.colorScheme) var colorScheme: ColorScheme
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            ZStack {
+                //Color.backgroundColor(colorScheme)
+                Text("Hello, World!")
+            }
+        }
     }
 }
 
