@@ -20,6 +20,7 @@
 		F86BA7F424899AAE00BA0BAC /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7EF24899AAE00BA0BAC /* Keychain.swift */; };
 		F86BA7F524899AAE00BA0BAC /* SharedWebCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7F024899AAE00BA0BAC /* SharedWebCredential.swift */; };
 		F86BA7F624899AAE00BA0BAC /* SignInWithAppleToFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7F124899AAE00BA0BAC /* SignInWithAppleToFirebase.swift */; };
+		F86BA7F924899BB500BA0BAC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7F824899BB500BA0BAC /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F86BA7EF24899AAE00BA0BAC /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		F86BA7F024899AAE00BA0BAC /* SharedWebCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedWebCredential.swift; sourceTree = "<group>"; };
 		F86BA7F124899AAE00BA0BAC /* SignInWithAppleToFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleToFirebase.swift; sourceTree = "<group>"; };
+		F86BA7F824899BB500BA0BAC /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				F86BA7D52489937A00BA0BAC /* AppDelegate.swift */,
 				F86BA7D72489937A00BA0BAC /* SceneDelegate.swift */,
 				F86BA7D92489937A00BA0BAC /* ContentView.swift */,
+				F86BA7F724899B9E00BA0BAC /* Extensions */,
 				F86BA7DB2489937C00BA0BAC /* Assets.xcassets */,
 				F86BA7E02489937C00BA0BAC /* LaunchScreen.storyboard */,
 				F86BA7E32489937C00BA0BAC /* Info.plist */,
@@ -131,6 +134,14 @@
 				F86BA7F024899AAE00BA0BAC /* SharedWebCredential.swift */,
 			);
 			path = CredentialStorage;
+			sourceTree = "<group>";
+		};
+		F86BA7F724899B9E00BA0BAC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F86BA7F824899BB500BA0BAC /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +268,7 @@
 				F86BA7DA2489937A00BA0BAC /* ContentView.swift in Sources */,
 				F86BA7F324899AAE00BA0BAC /* UserDataKeychain.swift in Sources */,
 				F86BA7F424899AAE00BA0BAC /* Keychain.swift in Sources */,
+				F86BA7F924899BB500BA0BAC /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

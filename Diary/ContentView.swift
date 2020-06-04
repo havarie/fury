@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                //Color.backgroundColor(colorScheme)
+                Color.backgroundColor(colorScheme)
                 Text("Hello, World!")
             }
         }
