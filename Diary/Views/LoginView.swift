@@ -13,15 +13,19 @@ import Resolver
 import FirebaseAuth
 
 struct LoginView: View {
-    @Environment (\.colorScheme) var colorScheme: ColorScheme
-    @InjectedObject var userService: UserService
+    @Environment (\.colorScheme) private var colorScheme: ColorScheme
+    @InjectedObject private var userService: UserService
     
-    @State private var showBrowseAppsModal = false
-    @State var isLoading = false
+    @State private var showHome = Auth.auth().currentUser != nil
+    @State private var showCreditsModal = false
+    @State private var isLoading = false
     
     var body: some View {
         NavigationView {
             ZStack {
+                NavigationLink(destination: HomeView(showHome: self.$showHome), isActive: self.$showHome) {
+                    EmptyView()
+                }
                 Color.backgroundColor(colorScheme)
                 .edgesIgnoringSafeArea(.all)
                 ActivityIndicatorView(isAnimating: self.$isLoading, style: .large)
@@ -47,16 +51,12 @@ struct LoginView: View {
                         self.isLoading = response == .loading
                         if response == .success {
                             self.userService.refresh()
-                            
-//                            let scene = UIApplication.shared.connectedScenes.first
-//                            if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
-//                                sd.loadH()
-//                            }
+                            self.showHome = true
                         }
                     }
                     .frame(minWidth: 200, idealWidth: 250, maxWidth: 400, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center).padding(25)
                     Button(action: {
-                        self.showBrowseAppsModal.toggle()
+                        self.showCreditsModal.toggle()
                     }) {
                         Image(systemName: "text.justifyleft")
                         Text("Credits")
@@ -67,7 +67,7 @@ struct LoginView: View {
                     Spacer()
                 }
             }
-            .sheet(isPresented: $showBrowseAppsModal) {
+            .sheet(isPresented: $showCreditsModal) {
                 // Credits
                 VStack {
                     Text("App by Leander Wiegemann")
@@ -86,12 +86,6 @@ struct LoginView: View {
                         }
                     }
                 }
-            }
-        }.onAppear {
-            if Auth.auth().currentUser != nil {
-                
-            } else {
-                // needs to login
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }

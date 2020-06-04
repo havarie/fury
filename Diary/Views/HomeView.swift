@@ -14,6 +14,8 @@ import Resolver
 struct HomeView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
+    @Binding var showHome: Bool
+    
     let user = Auth.auth().currentUser
     
     var body: some View {
@@ -24,15 +26,12 @@ struct HomeView: View {
                 Text("\(self.user?.email ?? "unknown")")
             }
             Button(action: {
-//                do {
-//                    try FUIAuth.defaultAuthUI()?.signOut()
-//                } catch {
-//
-//                }
-//                let scene = UIApplication.shared.connectedScenes.first
-//                if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
-//                    sd.loadLogin()
-//                }
+                do {
+                    try FUIAuth.defaultAuthUI()?.signOut()
+                } catch {
+
+                }
+                self.showHome = false
             }, label: {
                 Text("Logout")
             })
