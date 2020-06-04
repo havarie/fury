@@ -21,6 +21,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             Color.backgroundColor(colorScheme)
+            .edgesIgnoringSafeArea(.all)
             VStack {
                 Text("Account").font(.headline).underline()
                 VStack(alignment: .center) {
