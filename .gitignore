@@ -1,0 +1,5 @@
+# Cocoapods
+Pods/
+
+# Private Keys
+GoogleService-Info.plist
