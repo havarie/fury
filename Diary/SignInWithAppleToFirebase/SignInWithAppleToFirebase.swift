@@ -24,6 +24,7 @@ final class SignInWithApple: UIViewRepresentable {
 enum SignInWithAppleToFirebaseResponse {
     case success
     case error
+    case loading
 }
 
 
@@ -155,7 +156,6 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
                 return
             }
             // User is signed in to Firebase with Apple.
-            print("you're in")
             self.onLoginEvent?(.success)
         }
     }
@@ -183,6 +183,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
 
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        self.onLoginEvent?(.loading)
         switch authorization.credential {
         case let appleIdCredential as ASAuthorizationAppleIDCredential:
             if let _ = appleIdCredential.email, let _ = appleIdCredential.fullName {
@@ -192,6 +193,7 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerDelegate {
             }
             break
         default:
+            self.onLoginEvent?(.error)
             break
         }
     }
@@ -206,3 +208,4 @@ extension SignInWithAppleDelegates: ASAuthorizationControllerPresentationContext
         return self.window
     }
 }
+
