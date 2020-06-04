@@ -8,5 +8,6 @@ target 'Diary' do
   # Pods for Diary
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'FirebaseUI'
   pod 'Firebase/Analytics'
 end

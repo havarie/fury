@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LoginView.swift
 //  Diary
 //
 //  Created by Joseph Hinkle on 6/4/20.
