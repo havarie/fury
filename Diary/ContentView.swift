@@ -62,10 +62,24 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showBrowseAppsModal) {
-                
                 // Credits
-//                Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-                Text("some view")
+                VStack {
+                    Text("App by Leander Wiegemann")
+                    Text("Developed by Joe Hinkle")
+                    HStack {
+                        Text("App icon made by ")
+                            .font(.headline)
+                            .fontWeight(.regular)
+                        Button(action: {
+                            guard let url = URL(string: "https://www.flaticon.com/authors/freepik") else { return }
+                            UIApplication.shared.open(url)
+                        }) {
+                            Text("www.flaticon.com")
+                                .font(.headline)
+                                .fontWeight(.regular)
+                        }
+                    }
+                }
             }
         }.onAppear {
 //            if Auth.auth().currentUser != nil {
