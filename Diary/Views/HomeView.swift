@@ -19,22 +19,26 @@ struct HomeView: View {
     let user = Auth.auth().currentUser
     
     var body: some View {
-        VStack {
-            Text("Account").font(.headline).underline()
-            VStack(alignment: .center) {
-                Text("Logged in as:")
-                Text("\(self.user?.email ?? "unknown")")
-            }
-            Button(action: {
-                do {
-                    try FUIAuth.defaultAuthUI()?.signOut()
-                } catch {
-
+        NavigationView {
+            VStack {
+                Text("Account").font(.headline).underline()
+                VStack(alignment: .center) {
+                    Text("Logged in as:")
+                    Text("\(self.user?.email ?? "unknown")")
                 }
-                self.showHome = false
-            }, label: {
-                Text("Logout")
-            })
+                Button(action: {
+                    do {
+                        try FUIAuth.defaultAuthUI()?.signOut()
+                    } catch {
+
+                    }
+                    self.showHome = false
+                }, label: {
+                    Text("Logout")
+                })
+            }
+            .navigationBarTitle("Home")
+            .navigationBarBackButtonHidden(true)
         }
     }
 }
