@@ -13,6 +13,7 @@
 		F86BA7DC2489937C00BA0BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7DB2489937C00BA0BAC /* Assets.xcassets */; };
 		F86BA7DF2489937C00BA0BAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7DE2489937C00BA0BAC /* Preview Assets.xcassets */; };
 		F86BA7E22489937C00BA0BAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7E02489937C00BA0BAC /* LaunchScreen.storyboard */; };
+		F86BA7EA2489996B00BA0BAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F86BA7DE2489937C00BA0BAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F86BA7E12489937C00BA0BAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F86BA7E32489937C00BA0BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		F86BA7D42489937A00BA0BAC /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */,
 				F86BA7D52489937A00BA0BAC /* AppDelegate.swift */,
 				F86BA7D72489937A00BA0BAC /* SceneDelegate.swift */,
 				F86BA7D92489937A00BA0BAC /* ContentView.swift */,
@@ -134,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F86BA7E22489937C00BA0BAC /* LaunchScreen.storyboard in Resources */,
+				F86BA7EA2489996B00BA0BAC /* GoogleService-Info.plist in Resources */,
 				F86BA7DF2489937C00BA0BAC /* Preview Assets.xcassets in Resources */,
 				F86BA7DC2489937C00BA0BAC /* Assets.xcassets in Resources */,
 			);
