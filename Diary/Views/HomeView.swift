@@ -19,7 +19,8 @@ struct HomeView: View {
     let user = Auth.auth().currentUser
     
     var body: some View {
-        NavigationView {
+        ZStack {
+            Color.backgroundColor(colorScheme)
             VStack {
                 Text("Account").font(.headline).underline()
                 VStack(alignment: .center) {
@@ -37,8 +38,8 @@ struct HomeView: View {
                     Text("Logout")
                 })
             }
-            .navigationBarTitle("Home")
-            .navigationBarBackButtonHidden(true)
         }
+        .navigationBarTitle("Home")
+        .navigationBarBackButtonHidden(true)
     }
 }
