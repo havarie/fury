@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,11 @@
 		F86BA7F524899AAE00BA0BAC /* SharedWebCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7F024899AAE00BA0BAC /* SharedWebCredential.swift */; };
 		F86BA7F624899AAE00BA0BAC /* SignInWithAppleToFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7F124899AAE00BA0BAC /* SignInWithAppleToFirebase.swift */; };
 		F86BA7F924899BB500BA0BAC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7F824899BB500BA0BAC /* Color.swift */; };
+		F86BA7FC24899C2C00BA0BAC /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7FB24899C2C00BA0BAC /* ActivityIndicatorView.swift */; };
+		F86BA7FF24899D9600BA0BAC /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = F86BA7FE24899D9600BA0BAC /* Resolver */; };
+		F86BA80124899DA900BA0BAC /* AppDelegateInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80024899DA900BA0BAC /* AppDelegateInjection.swift */; };
+		F86BA80424899DD200BA0BAC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80324899DD200BA0BAC /* UserService.swift */; };
+		F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,10 @@
 		F86BA7F024899AAE00BA0BAC /* SharedWebCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedWebCredential.swift; sourceTree = "<group>"; };
 		F86BA7F124899AAE00BA0BAC /* SignInWithAppleToFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleToFirebase.swift; sourceTree = "<group>"; };
 		F86BA7F824899BB500BA0BAC /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F86BA7FB24899C2C00BA0BAC /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		F86BA80024899DA900BA0BAC /* AppDelegateInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateInjection.swift; sourceTree = "<group>"; };
+		F86BA80324899DD200BA0BAC /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F86BA7FF24899D9600BA0BAC /* Resolver in Frameworks */,
 				8047045EAE96F65D3A710B24 /* Pods_Diary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,9 +107,13 @@
 				F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */,
 				F86BA7D52489937A00BA0BAC /* AppDelegate.swift */,
 				F86BA7D72489937A00BA0BAC /* SceneDelegate.swift */,
+				F86BA80024899DA900BA0BAC /* AppDelegateInjection.swift */,
 				F86BA7D92489937A00BA0BAC /* ContentView.swift */,
+				F86BA7FA24899C2200BA0BAC /* Views */,
 				F86BA7F724899B9E00BA0BAC /* Extensions */,
 				F86BA7DB2489937C00BA0BAC /* Assets.xcassets */,
+				F86BA80524899E1100BA0BAC /* Helpers */,
+				F86BA80224899DC300BA0BAC /* Services */,
 				F86BA7E02489937C00BA0BAC /* LaunchScreen.storyboard */,
 				F86BA7E32489937C00BA0BAC /* Info.plist */,
 				F86BA7EB24899AAE00BA0BAC /* SignInWithAppleToFirebase */,
@@ -144,6 +158,30 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F86BA7FA24899C2200BA0BAC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F86BA7FB24899C2C00BA0BAC /* ActivityIndicatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F86BA80224899DC300BA0BAC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F86BA80324899DD200BA0BAC /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F86BA80524899E1100BA0BAC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,6 +200,9 @@
 			dependencies = (
 			);
 			name = Diary;
+			packageProductDependencies = (
+				F86BA7FE24899D9600BA0BAC /* Resolver */,
+			);
 			productName = Diary;
 			productReference = F86BA7D22489937A00BA0BAC /* Diary.app */;
 			productType = "com.apple.product-type.application";
@@ -190,6 +231,9 @@
 				Base,
 			);
 			mainGroup = F86BA7C92489937A00BA0BAC;
+			packageReferences = (
+				F86BA7FD24899D9600BA0BAC /* XCRemoteSwiftPackageReference "Resolver" */,
+			);
 			productRefGroup = F86BA7D32489937A00BA0BAC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,11 +305,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F86BA7D62489937A00BA0BAC /* AppDelegate.swift in Sources */,
+				F86BA7FC24899C2C00BA0BAC /* ActivityIndicatorView.swift in Sources */,
+				F86BA80124899DA900BA0BAC /* AppDelegateInjection.swift in Sources */,
 				F86BA7D82489937A00BA0BAC /* SceneDelegate.swift in Sources */,
 				F86BA7F224899AAE00BA0BAC /* UserData.swift in Sources */,
 				F86BA7F524899AAE00BA0BAC /* SharedWebCredential.swift in Sources */,
 				F86BA7F624899AAE00BA0BAC /* SignInWithAppleToFirebase.swift in Sources */,
+				F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */,
 				F86BA7DA2489937A00BA0BAC /* ContentView.swift in Sources */,
+				F86BA80424899DD200BA0BAC /* UserService.swift in Sources */,
 				F86BA7F324899AAE00BA0BAC /* UserDataKeychain.swift in Sources */,
 				F86BA7F424899AAE00BA0BAC /* Keychain.swift in Sources */,
 				F86BA7F924899BB500BA0BAC /* Color.swift in Sources */,
@@ -464,6 +512,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F86BA7FD24899D9600BA0BAC /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F86BA7FE24899D9600BA0BAC /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F86BA7FD24899D9600BA0BAC /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F86BA7CA2489937A00BA0BAC /* Project object */;
 }

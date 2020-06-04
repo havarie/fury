@@ -11,7 +11,10 @@ import SwiftUI
 extension Color {
     static func backgroundColor( _ colorScheme: ColorScheme ) -> Color {
         colorScheme == .light ?
-            Color(red: 12.3/20.0, green: 17.6/20.0, blue: 19.9/20.0) :
-            Color(red: 7.3/155.0, green: 11.6/155.0, blue: 19.9/155.0)
+            Color(red: 76.9/100.0, green: 95.3/100.0, blue: 100.0/100.0) :
+            Color(red: 0/100.0, green: 17.4/100.0, blue: 21.7/100.0)
+    }
+    static func blackOrWhite( _ colorScheme: ColorScheme ) -> Color {
+        colorScheme == .light ? .black : .white
     }
 }
