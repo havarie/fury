@@ -15,14 +15,24 @@ struct HomeView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
     @Binding var showHome: Bool
+    @State var showNewMemory: Bool = false
     
     let user = Auth.auth().currentUser
     
     var body: some View {
         ZStack {
+            NavigationLink(destination: NewMemoryView(), isActive: self.$showNewMemory) {
+                EmptyView()
+            }
             Color.backgroundColor(colorScheme)
             .edgesIgnoringSafeArea(.all)
             VStack {
+                Button(action: {
+                    self.showNewMemory = true
+                }) {
+                    Text("New Memory")
+                }
+                Spacer()
                 Text("Account").font(.headline).underline()
                 VStack(alignment: .center) {
                     Text("Logged in as:")
