@@ -16,7 +16,7 @@ struct TextMemoryView: View {
     @Binding var showCalendarView: Bool
     
     @State var isEditing = true
-    @State var memoryText: String = "okay"
+    @State var memoryText: String = ""
     
     var body: some View {
         VStack {
@@ -25,6 +25,11 @@ struct TextMemoryView: View {
                 isEditing: $isEditing,
                 placeholder: "Write your memory here..."
             )
+            Button(action: {
+                self.showCalendarView = true
+            }) {
+                Text("").makeColorCircle(colorScheme, Color.blue)
+            }.padding(.vertical, 10)
         }
     }
 }
