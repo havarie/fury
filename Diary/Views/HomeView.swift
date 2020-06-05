@@ -67,6 +67,13 @@ struct HomeView: View {
         .onAppear {
             // undo the animations being off because of auto-login
             UINavigationBar.setAnimationsEnabled(true)
+            // close keyboard
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
         }
     }
 }
