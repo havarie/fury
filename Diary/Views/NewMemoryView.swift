@@ -10,7 +10,19 @@ import SwiftUI
 
 
 struct NewMemoryView: View {
+    @Environment (\.colorScheme) var colorScheme: ColorScheme
+    
     var body: some View {
-        Text("asfd")
+        ZStack {
+//            NavigationLink(destination: HomeView(showHome: self.$showHome), isActive: self.$showHome) {
+//                EmptyView()
+//            }
+            Color.backgroundColor(colorScheme)
+            .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("ok")
+            }
+        }
+        .navigationBarTitle("Foto")
     }
 }
