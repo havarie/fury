@@ -51,7 +51,7 @@ struct HomeView: View {
                     CameraMemoryView(showCalendarView: self.$showCalendarView)
                 }
                 if selectedIndex == 2 {
-                    VideoMemoryView()
+                    VideoMemoryView(showCalendarView: self.$showCalendarView)
                 }
                 if selectedIndex == 3 {
                     ProfileView(showHome: self.$showHome)
@@ -60,7 +60,7 @@ struct HomeView: View {
                 BottomBar(selectedIndex: $selectedIndex, items: items)
             }
         }
-        .navigationBarTitle(Text(title), displayMode: .large)
+        .navigationBarTitle(Text(title), displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .onAppear {
             // undo the animations being off because of auto-login

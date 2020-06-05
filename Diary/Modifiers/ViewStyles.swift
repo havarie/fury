@@ -24,4 +24,11 @@ extension Text {
             .background(Color.red)
             .clipShape(Circle())
     }
+    func makeColorCircle(_ colorScheme: ColorScheme, _ color: Color) -> some View {
+        self.frame(width: 4, height: 45)
+        .background(Color.whiteOrBlack(colorScheme).opacity(0.5))
+        .clipShape(Circle()).frame(width: 95, height: 95)
+        .background(color.opacity(0.3))
+        .clipShape(Circle())
+    }
 }

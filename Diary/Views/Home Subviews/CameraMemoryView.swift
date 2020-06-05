@@ -29,13 +29,8 @@ struct CameraMemoryView: View {
             Button(action: {
                 self.showCalendarView = true
             }) {
-                Text("New Memory").customSubtitle(colorScheme)
-            }
-            Button(action: {
-        
-            }) {
-                Text("Take Photo").customCircleText(colorScheme)
-            }
+                Text("").makeColorCircle(colorScheme, Color.red)
+            }.padding(.vertical, 10)
         }
     }
 }

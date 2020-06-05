@@ -9,9 +9,28 @@
 import SwiftUI
 
 struct VideoMemoryView: View {
-    
-    
-    var body: some View {
-        Text("video view")
+    @Environment (\.colorScheme) var colorScheme: ColorScheme
+        
+        @Binding var showCalendarView: Bool
+        
+        @State var showCameraView: Bool = true
+        @State var pickedImage: Image? = nil
+        
+        var body: some View {
+            VStack {
+                // selected photo
+                pickedImage?.resizable().scaledToFit()
+                if showCameraView {
+                    CameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage)
+                } else {
+                    Text("nothing")
+                }
+                // todo: square frame
+                Button(action: {
+                    self.showCalendarView = true
+                }) {
+                    Text("").makeColorCircle(colorScheme, Color.purple)
+                }.padding(.vertical, 10)
+            }
+        }
     }
-}
