@@ -32,25 +32,29 @@ struct HomeView: View {
                 }) {
                     Text("New Memory")
                 }
-                Spacer()
-                Text("Account").font(.headline).underline()
-                VStack(alignment: .center) {
-                    Text("Logged in as:")
-                    Text("\(self.user?.email ?? "unknown")")
-                }
-                Button(action: {
-                    do {
-                        try FUIAuth.defaultAuthUI()?.signOut()
-                    } catch {
-
-                    }
-                    self.showHome = false
-                }, label: {
-                    Text("Logout")
-                })
             }
         }
-        .navigationBarTitle("Home")
+        .navigationBarTitle("Foto", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: {
+            do {
+                try FUIAuth.defaultAuthUI()?.signOut()
+            } catch {
+
+            }
+            self.showHome = false
+        }, label: {
+            Text("Logout")
+        }))
     }
 }
+
+
+
+// for showing login information
+//Spacer()
+//Text("Account").font(.headline).underline()
+//VStack(alignment: .center) {
+//    Text("Logged in as:")
+//    Text("\(self.user?.email ?? "unknown")")
+//}
