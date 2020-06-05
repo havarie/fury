@@ -22,8 +22,9 @@ struct ProfileView: View {
         VStack {
             Spacer()
             Text("Logged in as:").customTitle()
+                .padding(.bottom, 10)
             Text("\(self.user?.email ?? "unknown")").customText(colorScheme)
-            Spacer()
+                .padding(.bottom, 10)
             Button(action: {
                 do {
                     try FUIAuth.defaultAuthUI()?.signOut()

@@ -20,6 +20,11 @@ struct LoginView: View {
     @State private var showCreditsModal = false
     @State private var isLoading = false
     
+    init() {
+        // if already logged in, skip the animation
+        UINavigationBar.setAnimationsEnabled(Auth.auth().currentUser == nil)
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {

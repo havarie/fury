@@ -21,9 +21,6 @@ struct HomeView: View {
     
     @Binding var showHome: Bool
     @State var showCalendarView: Bool = false
-    @State var showCameraView: Bool = true
-    
-    @State var pickedImage: Image? = nil
     
     @State private var selectedIndex: Int = 1
     var selectedItem: BottomBarItem {
@@ -33,7 +30,7 @@ struct HomeView: View {
     var title: String {
         items[selectedIndex].title
     }
-    
+
     var body: some View {
         ZStack {
             NavigationLink(destination: CalendarView(), isActive: self.$showCalendarView) {
@@ -51,7 +48,7 @@ struct HomeView: View {
                     TextMemoryView()
                 }
                 if selectedIndex == 1 {
-                    CameraMemoryView()
+                    CameraMemoryView(showCalendarView: self.$showCalendarView)
                 }
                 if selectedIndex == 2 {
                     VideoMemoryView()
@@ -65,5 +62,9 @@ struct HomeView: View {
         }
         .navigationBarTitle(Text(title), displayMode: .large)
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            // undo the animations being off because of auto-login
+            UINavigationBar.setAnimationsEnabled(true)
+        }
     }
 }
