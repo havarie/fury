@@ -13,16 +13,30 @@ struct CalendarView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
     @State var alwaysShowCalendar = true
-    var rkManager1 = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
+    var rkManager1 = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(120*60*60*24*365), mode: 0) // goes out to 120 years
      
     var body: some View {
-        ZStack {
-            Color.backgroundColor(colorScheme)
-            .edgesIgnoringSafeArea(.all)
+//        ZStack {
+//            Color.backgroundColor(colorScheme)
+//            .edgesIgnoringSafeArea(.all)
             VStack {
                 RKViewController(isPresented: self.$alwaysShowCalendar, rkManager: self.rkManager1)
+                QuickPickView()
+            }
+//        }
+        .navigationBarTitle("Send Message", displayMode: .inline)
+    }
+}
+
+struct QuickPickView: View {
+    var body: some View {
+        VStack {
+            Text("QUICK PICK").customTitle()
+            Button(action: {
+                
+            }) {
+                Text("QUICK PICK").customSubtitle()
             }
         }
-        .navigationBarTitle("Send Message", displayMode: .inline)
     }
 }

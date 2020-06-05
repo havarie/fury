@@ -36,6 +36,7 @@
 		F86BA80424899DD200BA0BAC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80324899DD200BA0BAC /* UserService.swift */; };
 		F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */; };
 		F86BA80A2489A59400BA0BAC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA8092489A59400BA0BAC /* HomeView.swift */; };
+		F8D45F27248A775A0034C50D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F26248A775A0034C50D /* TextStyles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 		F86BA8082489A45700BA0BAC /* Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Diary.entitlements; sourceTree = "<group>"; };
 		F86BA8092489A59400BA0BAC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F8D45F26248A775A0034C50D /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				F86BA7FA24899C2200BA0BAC /* Views */,
 				F86BA7F724899B9E00BA0BAC /* Extensions */,
 				F86BA7DB2489937C00BA0BAC /* Assets.xcassets */,
+				F8D45F25248A77480034C50D /* Modifiers */,
 				F86BA80524899E1100BA0BAC /* Helpers */,
 				F86BA80224899DC300BA0BAC /* Services */,
 				F86BA7E02489937C00BA0BAC /* LaunchScreen.storyboard */,
@@ -220,6 +223,14 @@
 				F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F8D45F25248A77480034C50D /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				F8D45F26248A775A0034C50D /* TextStyles.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +385,7 @@
 				F86BA7F624899AAE00BA0BAC /* SignInWithAppleToFirebase.swift in Sources */,
 				F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */,
 				F81CEACF248A74BA00DBF5A1 /* RKDate.swift in Sources */,
+				F8D45F27248A775A0034C50D /* TextStyles.swift in Sources */,
 				F86BA7DA2489937A00BA0BAC /* LoginView.swift in Sources */,
 				F86BA80424899DD200BA0BAC /* UserService.swift in Sources */,
 				F81CEACA248A74BA00DBF5A1 /* RKManager.swift in Sources */,
