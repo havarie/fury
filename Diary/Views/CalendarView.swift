@@ -1,5 +1,5 @@
 //
-//  NewMemoryView.swift
+//  CalendarView.swift
 //  Diary
 //
 //  Created by Joseph Hinkle on 6/5/20.
@@ -9,7 +9,7 @@
 import SwiftUI
 
 
-struct NewMemoryView: View {
+struct CalendarView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
     var body: some View {

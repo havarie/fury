@@ -15,20 +15,20 @@ struct HomeView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
     @Binding var showHome: Bool
-    @State var showNewMemory: Bool = false
+    @State var `showCalendarView`: Bool = false
     
     let user = Auth.auth().currentUser
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: NewMemoryView(), isActive: self.$showNewMemory) {
+            NavigationLink(destination: CalendarView(), isActive: self.$showCalendarView) {
                 EmptyView()
             }
             Color.backgroundColor(colorScheme)
             .edgesIgnoringSafeArea(.all)
             VStack {
                 Button(action: {
-                    self.showNewMemory = true
+                    self.showCalendarView = true
                 }) {
                     Text("New Memory")
                 }
