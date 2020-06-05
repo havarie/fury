@@ -38,24 +38,34 @@ struct CalendarView: View {
 }
 
 struct QuickPickView: View {
+    @Environment (\.colorScheme) var colorScheme: ColorScheme
+    
     var body: some View {
         VStack {
+            Spacer()
             Text("QUICK PICK").customTitle()
             Button(action: {
                 
             }) {
-                Text("IN 1 DAY").customSubtitle()
+                Text("IN 1 DAY").customSubtitle(colorScheme)
             }
             Button(action: {
                 
             }) {
-                Text("IN 1 WEKK").customSubtitle()
+                Text("IN 1 WEEK").customSubtitle(colorScheme)
             }
             Button(action: {
                 
             }) {
-                Text("IN 1 YEAR").customSubtitle()
+                Text("IN 1 YEAR").customSubtitle(colorScheme)
             }
+            Spacer()
+            Button(action: {
+                
+            }) {
+                Text("SEND").customCircleText(colorScheme)
+            }
+            Spacer()
         }
     }
 }

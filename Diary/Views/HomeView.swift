@@ -16,6 +16,7 @@ struct HomeView: View {
     
     @Binding var showHome: Bool
     @State var showCalendarView: Bool = false
+    @State var showCamera: Bool = false
     
     let user = Auth.auth().currentUser
     
@@ -24,13 +25,16 @@ struct HomeView: View {
             NavigationLink(destination: CalendarView(), isActive: self.$showCalendarView) {
                 EmptyView()
             }
-            Color.backgroundColor(colorScheme)
-            .edgesIgnoringSafeArea(.all)
             VStack {
                 Button(action: {
                     self.showCalendarView = true
                 }) {
-                    Text("New Memory")
+                    Text("New Memory").customSubtitle(colorScheme)
+                }
+                Button(action: {
+                    self.showCalendarView = true
+                }) {
+                    Text("Take Photo").customCircleText(colorScheme)
                 }
             }
         }
