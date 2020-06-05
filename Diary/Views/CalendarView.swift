@@ -21,7 +21,15 @@ struct CalendarView: View {
 //            .edgesIgnoringSafeArea(.all)
             VStack {
                 RKViewController(isPresented: self.$alwaysShowCalendar, rkManager: self.rkManager1)
+                    .frame(minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: 0,
+                        maxHeight: .infinity)
                 QuickPickView()
+                    .frame(minWidth: 0,
+                        maxWidth: .infinity,
+                        minHeight: 0,
+                        maxHeight: .infinity)
             }
 //        }
         .navigationBarTitle("Send Message", displayMode: .inline)
