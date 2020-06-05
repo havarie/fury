@@ -11,6 +11,13 @@ import FirebaseAuth
 import FirebaseUI
 import Resolver
 
+let items: [BottomBarItem] = [
+    BottomBarItem(icon: "house.fill", title: "Home", color: .purple),
+    BottomBarItem(icon: "heart", title: "Likes", color: .pink),
+    BottomBarItem(icon: "magnifyingglass", title: "Search", color: .orange),
+    BottomBarItem(icon: "person.fill", title: "Profile", color: .blue)
+]
+
 struct HomeView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
@@ -22,18 +29,31 @@ struct HomeView: View {
     
     let user = Auth.auth().currentUser
     
+    @State private var selectedIndex: Int = 1
+    var selectedItem: BottomBarItem {
+        items[selectedIndex]
+    }
+    
     var body: some View {
         ZStack {
             NavigationLink(destination: CalendarView(), isActive: self.$showCalendarView) {
                 EmptyView()
             }
             VStack {
+                //change the navbar color
+                Rectangle()
+                    .foregroundColor(selectedItem.color)
+                    .edgesIgnoringSafeArea(.top)
+                    .frame(height: 0)
+                    .navigationBarHidden(false)
+                // selected photo
                 pickedImage?.resizable().scaledToFit()
                 if showCameraView {
                     CameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage)
                 } else {
-                    
+                    Text("nothing")
                 }
+                // todo: square frame
                 Button(action: {
                     self.showCalendarView = true
                 }) {
@@ -44,6 +64,7 @@ struct HomeView: View {
                 }) {
                     Text("Take Photo").customCircleText(colorScheme)
                 }
+                BottomBar(selectedIndex: $selectedIndex, items: items)
             }
         }
         .navigationBarTitle("Foto", displayMode: .inline)
