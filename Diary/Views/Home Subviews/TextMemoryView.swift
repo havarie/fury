@@ -7,20 +7,24 @@
 //
 
 import SwiftUI
-import KeyboardAvoider
+import TextView
+
 
 struct TextMemoryView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
     @Binding var showCalendarView: Bool
     
+    @State var isEditing = true
     @State var memoryText: String = "okay"
     
     var body: some View {
-        KeyboardAvoider {
-            VStack {
-                TextView(text: self.$memoryText)
-            }
+        VStack {
+            TextView(
+                text: $memoryText,
+                isEditing: $isEditing,
+                placeholder: "Write your memory here..."
+            )
         }
     }
 }

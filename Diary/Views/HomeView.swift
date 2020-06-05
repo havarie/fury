@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import KeyboardAvoider
 
 let items: [BottomBarItem] = [
     BottomBarItem(icon: "text.bubble", title: "TEXT", color: .blue),
@@ -30,6 +31,7 @@ struct HomeView: View {
     var title: String {
         items[selectedIndex].title
     }
+    
 
     var body: some View {
         ZStack {
@@ -58,7 +60,7 @@ struct HomeView: View {
                 }
                 Spacer()
                 BottomBar(selectedIndex: $selectedIndex, items: items)
-            }
+            }.avoidKeyboard()
         }
         .navigationBarTitle(Text(title), displayMode: .inline)
         .navigationBarBackButtonHidden(true)

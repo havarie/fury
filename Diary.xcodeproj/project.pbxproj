@@ -46,6 +46,7 @@
 		F8D45F37248A8A600034C50D /* CameraMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F36248A8A600034C50D /* CameraMemoryView.swift */; };
 		F8D45F39248A8D240034C50D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F38248A8D240034C50D /* ProfileView.swift */; };
 		F8D45F3C248A97E60034C50D /* KeyboardAvoider in Frameworks */ = {isa = PBXBuildFile; productRef = F8D45F3B248A97E60034C50D /* KeyboardAvoider */; };
+		F8D45F3F248A98FA0034C50D /* TextView in Frameworks */ = {isa = PBXBuildFile; productRef = F8D45F3E248A98FA0034C50D /* TextView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D45F3F248A98FA0034C50D /* TextView in Frameworks */,
 				F86BA7FF24899D9600BA0BAC /* Resolver in Frameworks */,
 				8047045EAE96F65D3A710B24 /* Pods_Diary.framework in Frameworks */,
 				F8D45F3C248A97E60034C50D /* KeyboardAvoider in Frameworks */,
@@ -297,6 +299,7 @@
 			packageProductDependencies = (
 				F86BA7FE24899D9600BA0BAC /* Resolver */,
 				F8D45F3B248A97E60034C50D /* KeyboardAvoider */,
+				F8D45F3E248A98FA0034C50D /* TextView */,
 			);
 			productName = Diary;
 			productReference = F86BA7D22489937A00BA0BAC /* Diary.app */;
@@ -329,6 +332,7 @@
 			packageReferences = (
 				F86BA7FD24899D9600BA0BAC /* XCRemoteSwiftPackageReference "Resolver" */,
 				F8D45F3A248A97E60034C50D /* XCRemoteSwiftPackageReference "KeyboardAvoider" */,
+				F8D45F3D248A98FA0034C50D /* XCRemoteSwiftPackageReference "TextView" */,
 			);
 			productRefGroup = F86BA7D32489937A00BA0BAC /* Products */;
 			projectDirPath = "";
@@ -668,6 +672,14 @@
 				minimumVersion = 1.0.3;
 			};
 		};
+		F8D45F3D248A98FA0034C50D /* XCRemoteSwiftPackageReference "TextView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kenmueller/TextView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -680,6 +692,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F8D45F3A248A97E60034C50D /* XCRemoteSwiftPackageReference "KeyboardAvoider" */;
 			productName = KeyboardAvoider;
+		};
+		F8D45F3E248A98FA0034C50D /* TextView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8D45F3D248A98FA0034C50D /* XCRemoteSwiftPackageReference "TextView" */;
+			productName = TextView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
