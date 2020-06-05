@@ -23,6 +23,6 @@ struct NewMemoryView: View {
                 Text("ok")
             }
         }
-        .navigationBarTitle("Foto")
+        .navigationBarTitle("Foto", displayMode: .inline)
     }
 }
