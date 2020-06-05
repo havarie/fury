@@ -44,7 +44,17 @@ struct QuickPickView: View {
             Button(action: {
                 
             }) {
-                Text("QUICK PICK").customSubtitle()
+                Text("IN 1 DAY").customSubtitle()
+            }
+            Button(action: {
+                
+            }) {
+                Text("IN 1 WEKK").customSubtitle()
+            }
+            Button(action: {
+                
+            }) {
+                Text("IN 1 YEAR").customSubtitle()
             }
         }
     }
