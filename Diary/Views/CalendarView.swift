@@ -20,7 +20,8 @@ struct CalendarView: View {
 //            Color.backgroundColor(colorScheme)
 //            .edgesIgnoringSafeArea(.all)
             VStack {
-                RKViewController(isPresented: self.$alwaysShowCalendar, rkManager: self.rkManager1)
+                // need to RKViewController in VStack to allow it to frame properly
+                VStack { RKViewController(isPresented: self.$alwaysShowCalendar, rkManager: self.rkManager1) }
                     .frame(minWidth: 0,
                         maxWidth: .infinity,
                         minHeight: 0,
