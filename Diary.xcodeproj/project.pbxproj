@@ -41,6 +41,10 @@
 		F8D45F2E248A85F00034C50D /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F2B248A85F00034C50D /* BottomBarItemView.swift */; };
 		F8D45F2F248A85F00034C50D /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F2C248A85F00034C50D /* BottomBar.swift */; };
 		F8D45F30248A85F00034C50D /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F2D248A85F00034C50D /* BottomBarItem.swift */; };
+		F8D45F33248A8A250034C50D /* TextMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F32248A8A250034C50D /* TextMemoryView.swift */; };
+		F8D45F35248A8A4C0034C50D /* VideoMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F34248A8A4C0034C50D /* VideoMemoryView.swift */; };
+		F8D45F37248A8A600034C50D /* CameraMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F36248A8A600034C50D /* CameraMemoryView.swift */; };
+		F8D45F39248A8D240034C50D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F38248A8D240034C50D /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +86,10 @@
 		F8D45F2B248A85F00034C50D /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		F8D45F2C248A85F00034C50D /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		F8D45F2D248A85F00034C50D /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
+		F8D45F32248A8A250034C50D /* TextMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMemoryView.swift; sourceTree = "<group>"; };
+		F8D45F34248A8A4C0034C50D /* VideoMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMemoryView.swift; sourceTree = "<group>"; };
+		F8D45F36248A8A600034C50D /* CameraMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMemoryView.swift; sourceTree = "<group>"; };
+		F8D45F38248A8D240034C50D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +220,7 @@
 				F86BA7FB24899C2C00BA0BAC /* ActivityIndicatorView.swift */,
 				F86BA7D92489937A00BA0BAC /* LoginView.swift */,
 				F86BA8092489A59400BA0BAC /* HomeView.swift */,
+				F8D45F31248A8A0F0034C50D /* Home Subviews */,
 				F81CEABD248A702A00DBF5A1 /* CalendarView.swift */,
 				F81CEABF248A718500DBF5A1 /* ImagePickerView.swift */,
 				F8D45F28248A7F9A0034C50D /* CameraView.swift */,
@@ -251,6 +260,17 @@
 				F8D45F2D248A85F00034C50D /* BottomBarItem.swift */,
 			);
 			path = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		F8D45F31248A8A0F0034C50D /* Home Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				F8D45F32248A8A250034C50D /* TextMemoryView.swift */,
+				F8D45F36248A8A600034C50D /* CameraMemoryView.swift */,
+				F8D45F34248A8A4C0034C50D /* VideoMemoryView.swift */,
+				F8D45F38248A8D240034C50D /* ProfileView.swift */,
+			);
+			path = "Home Subviews";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +424,7 @@
 				F86BA7F524899AAE00BA0BAC /* SharedWebCredential.swift in Sources */,
 				F86BA7F624899AAE00BA0BAC /* SignInWithAppleToFirebase.swift in Sources */,
 				F8D45F2E248A85F00034C50D /* BottomBarItemView.swift in Sources */,
+				F8D45F35248A8A4C0034C50D /* VideoMemoryView.swift in Sources */,
 				F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */,
 				F81CEACF248A74BA00DBF5A1 /* RKDate.swift in Sources */,
 				F8D45F27248A775A0034C50D /* ViewStyles.swift in Sources */,
@@ -416,11 +437,14 @@
 				F81CEACB248A74BA00DBF5A1 /* RKWeekdayHeader.swift in Sources */,
 				F8D45F2F248A85F00034C50D /* BottomBar.swift in Sources */,
 				F81CEAC9248A74BA00DBF5A1 /* RKViewController.swift in Sources */,
+				F8D45F39248A8D240034C50D /* ProfileView.swift in Sources */,
 				F86BA7F424899AAE00BA0BAC /* Keychain.swift in Sources */,
 				F81CEACD248A74BA00DBF5A1 /* RKCell.swift in Sources */,
 				F86BA7F924899BB500BA0BAC /* Color.swift in Sources */,
 				F8D45F29248A7F9A0034C50D /* CameraView.swift in Sources */,
 				F81CEACE248A74BA00DBF5A1 /* RKColorSettings.swift in Sources */,
+				F8D45F33248A8A250034C50D /* TextMemoryView.swift in Sources */,
+				F8D45F37248A8A600034C50D /* CameraMemoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

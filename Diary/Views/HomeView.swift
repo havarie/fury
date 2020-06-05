@@ -8,14 +8,12 @@
 
 import SwiftUI
 import FirebaseAuth
-import FirebaseUI
-import Resolver
 
 let items: [BottomBarItem] = [
-    BottomBarItem(icon: "house.fill", title: "Home", color: .purple),
-    BottomBarItem(icon: "heart", title: "Likes", color: .pink),
-    BottomBarItem(icon: "magnifyingglass", title: "Search", color: .orange),
-    BottomBarItem(icon: "person.fill", title: "Profile", color: .blue)
+    BottomBarItem(icon: "text.bubble", title: "TEXT", color: .blue),
+    BottomBarItem(icon: "camera.fill", title: "FOTO", color: .red),
+    BottomBarItem(icon: "video.fill", title: "VIDEO", color: .purple),
+    BottomBarItem(icon: "person.fill", title: "PROFILE", color: .orange)
 ]
 
 struct HomeView: View {
@@ -27,11 +25,13 @@ struct HomeView: View {
     
     @State var pickedImage: Image? = nil
     
-    let user = Auth.auth().currentUser
-    
     @State private var selectedIndex: Int = 1
     var selectedItem: BottomBarItem {
         items[selectedIndex]
+    }
+    
+    var title: String {
+        items[selectedIndex].title
     }
     
     var body: some View {
@@ -46,48 +46,24 @@ struct HomeView: View {
                     .edgesIgnoringSafeArea(.top)
                     .frame(height: 0)
                     .navigationBarHidden(false)
-                // selected photo
-                pickedImage?.resizable().scaledToFit()
-                if showCameraView {
-                    CameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage)
-                } else {
-                    Text("nothing")
+                Spacer()
+                if selectedIndex == 0 {
+                    TextMemoryView()
                 }
-                // todo: square frame
-                Button(action: {
-                    self.showCalendarView = true
-                }) {
-                    Text("New Memory").customSubtitle(colorScheme)
+                if selectedIndex == 1 {
+                    CameraMemoryView()
                 }
-                Button(action: {
-                    
-                }) {
-                    Text("Take Photo").customCircleText(colorScheme)
+                if selectedIndex == 2 {
+                    VideoMemoryView()
                 }
+                if selectedIndex == 3 {
+                    ProfileView(showHome: self.$showHome)
+                }
+                Spacer()
                 BottomBar(selectedIndex: $selectedIndex, items: items)
             }
         }
-        .navigationBarTitle("Foto", displayMode: .inline)
+        .navigationBarTitle(Text(title), displayMode: .large)
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action: {
-            do {
-                try FUIAuth.defaultAuthUI()?.signOut()
-            } catch {
-
-            }
-            self.showHome = false
-        }, label: {
-            Text("Logout")
-        }))
     }
 }
-
-
-
-// for showing login information
-//Spacer()
-//Text("Account").font(.headline).underline()
-//VStack(alignment: .center) {
-//    Text("Logged in as:")
-//    Text("\(self.user?.email ?? "unknown")")
-//}

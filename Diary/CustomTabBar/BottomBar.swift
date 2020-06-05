@@ -9,6 +9,7 @@
 import SwiftUI
 
 public struct BottomBar : View {
+    @Environment (\.colorScheme) var colorScheme: ColorScheme
     @Binding public var selectedIndex: Int
     
     public let items: [BottomBarItem]
@@ -39,10 +40,10 @@ public struct BottomBar : View {
         .padding()
         .frame(width: 400.0)
         .animation(.default)
-        .background(Color.white)
+        .background(Color.whiteOrBlack(colorScheme, diff: 0.025))
         .cornerRadius(30)
     
-        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: -2)
+        .shadow(color: Color.blackOrWhite(colorScheme).opacity(0.2), radius: 10, x: 0, y: -2)
         .edgesIgnoringSafeArea(.bottom)
     }
 }

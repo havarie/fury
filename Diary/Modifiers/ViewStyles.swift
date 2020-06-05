@@ -15,6 +15,9 @@ extension Text {
     func customSubtitle(_ colorScheme: ColorScheme) -> Text {
         self.font(.title).fontWeight(.bold).foregroundColor(Color.blackOrWhite(colorScheme))
     }
+    func customText(_ colorScheme: ColorScheme) -> Text {
+        self.font(.subheadline).fontWeight(.bold).foregroundColor(Color.blackOrWhite(colorScheme))
+    }
     func customCircleText(_ colorScheme: ColorScheme) -> some View {
         self.font(.largeTitle).fontWeight(.bold).foregroundColor(Color.blackOrWhite(colorScheme))
             .frame(width: 120, height: 120)
