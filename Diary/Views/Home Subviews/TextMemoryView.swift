@@ -14,12 +14,12 @@ struct TextMemoryView: View {
     
     @Binding var showCalendarView: Bool
     
-    @State var memoryText: String = ""
+    @State var memoryText: String = "okay"
     
     var body: some View {
         KeyboardAvoider {
             VStack {
-                TextField("Write your memory here...", text: self.$memoryText)
+                TextView(text: self.$memoryText)
             }
         }
     }
