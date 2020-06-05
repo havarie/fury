@@ -11,7 +11,7 @@ import SwiftUI
 struct CameraView: UIViewControllerRepresentable {
     
     @Binding var showCameraView: Bool
-    @Binding var pickedImage: Image
+    @Binding var pickedImage: Image?
     
     func makeCoordinator() -> CameraView.Coordinator {
         Coordinator(self)
@@ -22,6 +22,9 @@ struct CameraView: UIViewControllerRepresentable {
         cameraViewController.delegate = context.coordinator
         cameraViewController.sourceType = .camera
         cameraViewController.allowsEditing = false
+        cameraViewController.cameraFlashMode = .auto
+        cameraViewController.showsCameraControls = false
+        cameraViewController.cameraCaptureMode = .photo
         return cameraViewController
     }
     

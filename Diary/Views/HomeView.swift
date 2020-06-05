@@ -16,7 +16,9 @@ struct HomeView: View {
     
     @Binding var showHome: Bool
     @State var showCalendarView: Bool = false
-    @State var showCamera: Bool = false
+    @State var showCameraView: Bool = true
+    
+    @State var pickedImage: Image? = nil
     
     let user = Auth.auth().currentUser
     
@@ -26,13 +28,19 @@ struct HomeView: View {
                 EmptyView()
             }
             VStack {
+                pickedImage?.resizable().scaledToFit()
+                if showCameraView {
+                    CameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage)
+                } else {
+                    
+                }
                 Button(action: {
                     self.showCalendarView = true
                 }) {
                     Text("New Memory").customSubtitle(colorScheme)
                 }
                 Button(action: {
-                    self.showCalendarView = true
+                    
                 }) {
                     Text("Take Photo").customCircleText(colorScheme)
                 }
