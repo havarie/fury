@@ -15,7 +15,7 @@ struct HomeView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
     
     @Binding var showHome: Bool
-    @State var `showCalendarView`: Bool = false
+    @State var showCalendarView: Bool = false
     
     let user = Auth.auth().currentUser
     
