@@ -7,11 +7,20 @@
 //
 
 import SwiftUI
+import KeyboardAvoider
 
 struct TextMemoryView: View {
+    @Environment (\.colorScheme) var colorScheme: ColorScheme
     
+    @Binding var showCalendarView: Bool
+    
+    @State var memoryText: String = ""
     
     var body: some View {
-        Text("text view")
+        KeyboardAvoider {
+            VStack {
+                TextField("Write your memory here...", text: self.$memoryText)
+            }
+        }
     }
 }

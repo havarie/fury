@@ -45,7 +45,7 @@ struct HomeView: View {
                     .navigationBarHidden(false)
                 Spacer()
                 if selectedIndex == 0 {
-                    TextMemoryView()
+                    TextMemoryView(showCalendarView: self.$showCalendarView)
                 }
                 if selectedIndex == 1 {
                     CameraMemoryView(showCalendarView: self.$showCalendarView)

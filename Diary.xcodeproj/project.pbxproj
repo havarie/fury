@@ -45,6 +45,7 @@
 		F8D45F35248A8A4C0034C50D /* VideoMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F34248A8A4C0034C50D /* VideoMemoryView.swift */; };
 		F8D45F37248A8A600034C50D /* CameraMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F36248A8A600034C50D /* CameraMemoryView.swift */; };
 		F8D45F39248A8D240034C50D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F38248A8D240034C50D /* ProfileView.swift */; };
+		F8D45F3C248A97E60034C50D /* KeyboardAvoider in Frameworks */ = {isa = PBXBuildFile; productRef = F8D45F3B248A97E60034C50D /* KeyboardAvoider */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 			files = (
 				F86BA7FF24899D9600BA0BAC /* Resolver in Frameworks */,
 				8047045EAE96F65D3A710B24 /* Pods_Diary.framework in Frameworks */,
+				F8D45F3C248A97E60034C50D /* KeyboardAvoider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +296,7 @@
 			name = Diary;
 			packageProductDependencies = (
 				F86BA7FE24899D9600BA0BAC /* Resolver */,
+				F8D45F3B248A97E60034C50D /* KeyboardAvoider */,
 			);
 			productName = Diary;
 			productReference = F86BA7D22489937A00BA0BAC /* Diary.app */;
@@ -325,6 +328,7 @@
 			mainGroup = F86BA7C92489937A00BA0BAC;
 			packageReferences = (
 				F86BA7FD24899D9600BA0BAC /* XCRemoteSwiftPackageReference "Resolver" */,
+				F8D45F3A248A97E60034C50D /* XCRemoteSwiftPackageReference "KeyboardAvoider" */,
 			);
 			productRefGroup = F86BA7D32489937A00BA0BAC /* Products */;
 			projectDirPath = "";
@@ -656,6 +660,14 @@
 				minimumVersion = 1.1.4;
 			};
 		};
+		F8D45F3A248A97E60034C50D /* XCRemoteSwiftPackageReference "KeyboardAvoider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/michaelhenry/KeyboardAvoider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -663,6 +675,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F86BA7FD24899D9600BA0BAC /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
+		};
+		F8D45F3B248A97E60034C50D /* KeyboardAvoider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8D45F3A248A97E60034C50D /* XCRemoteSwiftPackageReference "KeyboardAvoider" */;
+			productName = KeyboardAvoider;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
