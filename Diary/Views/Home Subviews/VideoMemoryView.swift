@@ -43,11 +43,10 @@ struct VideoMemoryView: View {
             pickedImage?.resizable().scaledToFit()
             if showCameraView {
                 VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage).getAndSetRecordingFunc(self.startRecording, self.stopRecording)
+                Text("").makeColorCircle(colorScheme, Color.purple).padding(.vertical, 10).gesture(recordGesture).opacity(isRecording ? 0.5 : 1)
             } else {
-                Text("nothing")
+                Text("Loading...")
             }
-            // todo: square frame
-            Text("").makeColorCircle(colorScheme, Color.purple).padding(.vertical, 10).gesture(recordGesture).opacity(isRecording ? 0.5 : 1)
         }
     }
 }

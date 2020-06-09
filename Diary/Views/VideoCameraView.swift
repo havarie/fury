@@ -15,15 +15,17 @@ struct VideoCameraView: UIViewControllerRepresentable {
     @Binding var pickedImage: Image?
     
     func startRecording() {
-        print("gooooo")
+        cameraViewController.startVideoCapture()
     }
     func stopRecording() {
-        print("gooooo")
+        cameraViewController.stopVideoCapture()
+        
+        showCameraView = false
     }
     
     func getAndSetRecordingFunc(_ startFunc: ObservableContainer<()->()>, _ stopFunc: ObservableContainer<()->()>) -> VideoCameraView {
-        startFunc.value = self.startRecording
-        stopFunc.value = self.stopRecording
+        startFunc.value = startRecording
+        stopFunc.value = stopRecording
         return self
     }
     
@@ -38,6 +40,7 @@ struct VideoCameraView: UIViewControllerRepresentable {
         cameraViewController.cameraFlashMode = .auto
         cameraViewController.showsCameraControls = false
         cameraViewController.mediaTypes = [kUTTypeMovie as String]
+        cameraViewController.cameraDevice = .front
         cameraViewController.cameraCaptureMode = .video
         return cameraViewController
     }
