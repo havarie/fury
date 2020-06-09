@@ -8,16 +8,16 @@
 
 import SwiftUI
 
-struct CameraView: UIViewControllerRepresentable {
+struct VideoCameraView: UIViewControllerRepresentable {
     
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
     
-    func makeCoordinator() -> CameraView.Coordinator {
+    func makeCoordinator() -> VideoCameraView.Coordinator {
         Coordinator(self)
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<CameraView>) -> UIViewController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<VideoCameraView>) -> UIViewController {
         let cameraViewController = UIImagePickerController()
         cameraViewController.delegate = context.coordinator
         cameraViewController.sourceType = .camera
@@ -28,14 +28,14 @@ struct CameraView: UIViewControllerRepresentable {
         return cameraViewController
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<CameraView>) {
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<VideoCameraView>) {
         
     }
     
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-        var parent: CameraView
+        var parent: VideoCameraView
         
-        init(_ cameraView: CameraView) {
+        init(_ cameraView: VideoCameraView) {
             self.parent = cameraView
         }
         
