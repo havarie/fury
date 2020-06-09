@@ -17,30 +17,32 @@ struct VideoMemoryView: View {
     @State var pickedImage: Image? = nil
     @State var isRecording: Bool = false
     @ObservedObject var startRecording: ObservableContainer = ObservableContainer {}
+    @ObservedObject var stopRecording: ObservableContainer = ObservableContainer {}
 
     
     var body: some View {
         let recordGesture = DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
             .onChanged { _ in
                 if !self.isRecording {
-                    print(">> touch down") // additional conditions might be here
-                    self.startRecording.fun()
-                }
-                withAnimation {
-                    self.isRecording = true
+                    self.startRecording.value()
+                    withAnimation {
+                        self.isRecording = true
+                    }
                 }
             }
             .onEnded { _ in
-                withAnimation {
-                    self.isRecording = false
+                if self.isRecording {
+                    self.stopRecording.value()
+                    withAnimation {
+                        self.isRecording = false
+                    }
                 }
-                print("<< touch up")
             }
         return VStack {
             // selected photo
             pickedImage?.resizable().scaledToFit()
             if showCameraView {
-                VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage).getAndSetRecordingFunc(self.startRecording)
+                VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage).getAndSetRecordingFunc(self.startRecording, self.stopRecording)
             } else {
                 Text("nothing")
             }

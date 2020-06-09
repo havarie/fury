@@ -10,29 +10,20 @@ import SwiftUI
 import MobileCoreServices
 
 struct VideoCameraView: UIViewControllerRepresentable {
-    
+    var cameraViewController = UIImagePickerController()
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
-    @State var startRecordingFunc: () -> () = {
-        print("go")
-    }
     
-    func go() {
+    func startRecording() {
+        print("gooooo")
+    }
+    func stopRecording() {
         print("gooooo")
     }
     
-//    init(
-//        _ showCameraView: Binding<Bool>,
-//        _ pickedImage: Binding<Image?>,
-//        _ startRecordingFunc: Binding<Binding<()->()>?>) {
-//        self._showCameraView = showCameraView
-//        self._pickedImage = pickedImage
-//        startRecordingFunc.
-////            = self.$startRecordingFunc
-//    }
-    
-    func getAndSetRecordingFunc(_ myFunc: ObservableContainer) -> VideoCameraView {
-        myFunc.fun = self.go
+    func getAndSetRecordingFunc(_ startFunc: ObservableContainer<()->()>, _ stopFunc: ObservableContainer<()->()>) -> VideoCameraView {
+        startFunc.value = self.startRecording
+        stopFunc.value = self.stopRecording
         return self
     }
     
@@ -41,7 +32,6 @@ struct VideoCameraView: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<VideoCameraView>) -> UIViewController {
-        let cameraViewController = UIImagePickerController()
         cameraViewController.delegate = context.coordinator
         cameraViewController.sourceType = .camera
         cameraViewController.allowsEditing = false
@@ -49,10 +39,6 @@ struct VideoCameraView: UIViewControllerRepresentable {
         cameraViewController.showsCameraControls = false
         cameraViewController.mediaTypes = [kUTTypeMovie as String]
         cameraViewController.cameraCaptureMode = .video
-        
-        
-        
-//        cameraViewController.startVideoCapture()
         return cameraViewController
     }
     
@@ -80,9 +66,9 @@ struct VideoCameraView: UIViewControllerRepresentable {
 }
 
 
-final class ObservableContainer: ObservableObject {
-    var fun: () -> ()
-    init(_ fun: @escaping () -> ()) {
-        self.fun = fun
+final class ObservableContainer<T>: ObservableObject {
+    var value: T
+    init(_ value: T) {
+        self.value = value
     }
 }
