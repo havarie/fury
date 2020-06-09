@@ -27,6 +27,12 @@ struct VideoCameraView: UIViewControllerRepresentable {
 ////            = self.$startRecordingFunc
 //    }
     
+    func getAndSetRecordingFunc(_ myFunc: Binding<()->()>) -> VideoCameraView {
+        var myFunc = myFunc
+        myFunc = $startRecordingFunc
+        return self
+    }
+    
     func makeCoordinator() -> VideoCameraView.Coordinator {
         Coordinator(self)
     }

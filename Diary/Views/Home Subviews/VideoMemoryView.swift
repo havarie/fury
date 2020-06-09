@@ -17,13 +17,17 @@ struct VideoMemoryView: View {
     @State var pickedImage: Image? = nil
     @State var isRecording: Bool = false
     
-    @State var startRecorindFunc: Binding<()->()>? = nil
+    @State var startRecordingFunc: () -> () = {
+        print("nope")
+    }
+
     
     var body: some View {
         let recordGesture = DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
             .onChanged { _ in
                 if !self.isRecording {
                     print(">> touch down") // additional conditions might be here
+                    self.startRecordingFunc()
                 }
                 withAnimation {
                     self.isRecording = true
@@ -39,7 +43,7 @@ struct VideoMemoryView: View {
             // selected photo
             pickedImage?.resizable().scaledToFit()
             if showCameraView {
-                VideoCameraView(self.$showCameraView, self.$pickedImage, self.$startRecorindFunc)
+                VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage).getAndSetRecordingFunc(self.$startRecordingFunc)
             } else {
                 Text("nothing")
             }
