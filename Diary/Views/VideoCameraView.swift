@@ -13,7 +13,19 @@ struct VideoCameraView: UIViewControllerRepresentable {
     
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
-    @Binding var isRecording: Bool
+    @State var startRecordingFunc: () -> () = {
+        print("go")
+    }
+    
+//    init(
+//        _ showCameraView: Binding<Bool>,
+//        _ pickedImage: Binding<Image?>,
+//        _ startRecordingFunc: Binding<Binding<()->()>?>) {
+//        self._showCameraView = showCameraView
+//        self._pickedImage = pickedImage
+//        startRecordingFunc.
+////            = self.$startRecordingFunc
+//    }
     
     func makeCoordinator() -> VideoCameraView.Coordinator {
         Coordinator(self)
@@ -30,9 +42,6 @@ struct VideoCameraView: UIViewControllerRepresentable {
         cameraViewController.cameraCaptureMode = .video
         
         
-        self._isRecording.didSet {
-            print("handle recording \($0)")
-        }
         
 //        cameraViewController.startVideoCapture()
         return cameraViewController
@@ -58,26 +67,5 @@ struct VideoCameraView: UIViewControllerRepresentable {
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.showCameraView = false
         }
-    }
-}
-
-
-// source: https://stackoverflow.com/a/59391476/3902590
-extension Binding {
-    /// Execute block when value is changed.
-    ///
-    /// Example:
-    ///
-    ///     Slider(value: $amount.didSet { print($0) }, in: 0...10)
-    func didSet(execute: @escaping (Value) ->Void) -> Binding {
-        return Binding(
-            get: {
-                return self.wrappedValue
-            },
-            set: {
-                execute($0)
-                self.wrappedValue = $0
-            }
-        )
     }
 }
