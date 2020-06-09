@@ -17,6 +17,10 @@ struct VideoCameraView: UIViewControllerRepresentable {
         print("go")
     }
     
+    func go() {
+        print("gooooo")
+    }
+    
 //    init(
 //        _ showCameraView: Binding<Bool>,
 //        _ pickedImage: Binding<Image?>,
@@ -27,9 +31,8 @@ struct VideoCameraView: UIViewControllerRepresentable {
 ////            = self.$startRecordingFunc
 //    }
     
-    func getAndSetRecordingFunc(_ myFunc: Binding<()->()>) -> VideoCameraView {
-        var myFunc = myFunc
-        myFunc = $startRecordingFunc
+    func getAndSetRecordingFunc(_ myFunc: ObservableContainer) -> VideoCameraView {
+        myFunc.fun = self.go
         return self
     }
     
@@ -73,5 +76,13 @@ struct VideoCameraView: UIViewControllerRepresentable {
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.showCameraView = false
         }
+    }
+}
+
+
+final class ObservableContainer: ObservableObject {
+    var fun: () -> ()
+    init(_ fun: @escaping () -> ()) {
+        self.fun = fun
     }
 }

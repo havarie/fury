@@ -16,10 +16,7 @@ struct VideoMemoryView: View {
     @State var showCameraView: Bool = true
     @State var pickedImage: Image? = nil
     @State var isRecording: Bool = false
-    
-    @State var startRecordingFunc: () -> () = {
-        print("nope")
-    }
+    @ObservedObject var startRecording: ObservableContainer = ObservableContainer {}
 
     
     var body: some View {
@@ -27,7 +24,7 @@ struct VideoMemoryView: View {
             .onChanged { _ in
                 if !self.isRecording {
                     print(">> touch down") // additional conditions might be here
-                    self.startRecordingFunc()
+                    self.startRecording.fun()
                 }
                 withAnimation {
                     self.isRecording = true
@@ -43,7 +40,7 @@ struct VideoMemoryView: View {
             // selected photo
             pickedImage?.resizable().scaledToFit()
             if showCameraView {
-                VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage).getAndSetRecordingFunc(self.$startRecordingFunc)
+                VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage).getAndSetRecordingFunc(self.startRecording)
             } else {
                 Text("nothing")
             }
