@@ -7,17 +7,13 @@
 //
 
 import SwiftUI
+import MobileCoreServices
 
 struct VideoCameraView: UIViewControllerRepresentable {
     
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
-    @Binding var isRecording: Bool {
-        didSet{
-            print("didSet: oldValue=\(oldValue) newValue=\(isRecording)")
-            //Write code, function do what ever you want todo
-        }
-    }
+    @Binding var isRecording: Bool
     
     func makeCoordinator() -> VideoCameraView.Coordinator {
         Coordinator(self)
@@ -30,7 +26,13 @@ struct VideoCameraView: UIViewControllerRepresentable {
         cameraViewController.allowsEditing = false
         cameraViewController.cameraFlashMode = .auto
         cameraViewController.showsCameraControls = false
+        cameraViewController.mediaTypes = [kUTTypeMovie as String]
         cameraViewController.cameraCaptureMode = .video
+        
+        
+        self._isRecording.didSet {
+            print("handle recording \($0)")
+        }
         
 //        cameraViewController.startVideoCapture()
         return cameraViewController
@@ -56,5 +58,26 @@ struct VideoCameraView: UIViewControllerRepresentable {
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.showCameraView = false
         }
+    }
+}
+
+
+// source: https://stackoverflow.com/a/59391476/3902590
+extension Binding {
+    /// Execute block when value is changed.
+    ///
+    /// Example:
+    ///
+    ///     Slider(value: $amount.didSet { print($0) }, in: 0...10)
+    func didSet(execute: @escaping (Value) ->Void) -> Binding {
+        return Binding(
+            get: {
+                return self.wrappedValue
+            },
+            set: {
+                execute($0)
+                self.wrappedValue = $0
+            }
+        )
     }
 }
