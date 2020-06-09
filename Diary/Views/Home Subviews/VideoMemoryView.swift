@@ -16,6 +16,7 @@ struct VideoMemoryView: View {
         @State var showCameraView: Bool = true
         @State var pickedImage: Image? = nil
         @State var isRecording = false
+    
         
         var body: some View {
             let recordGesture = DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
@@ -23,22 +24,26 @@ struct VideoMemoryView: View {
                     if !self.isRecording {
                         print(">> touch down") // additional conditions might be here
                     }
-                    self.isRecording = true
+                    withAnimation {
+                        self.isRecording = true
+                    }
                 }
                 .onEnded { _ in
-                    self.isRecording = false
+                    withAnimation {
+                        self.isRecording = false
+                    }
                     print("<< touch up")
                 }
             return VStack {
                 // selected photo
                 pickedImage?.resizable().scaledToFit()
                 if showCameraView {
-                    CameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage)
+                    VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage, isRecording: self.$isRecording)
                 } else {
                     Text("nothing")
                 }
                 // todo: square frame
-                Text("").makeColorCircle(colorScheme, Color.purple).padding(.vertical, 10).gesture(recordGesture).opacity(isRecording ? 0.2 : 1)
+                Text("").makeColorCircle(colorScheme, Color.purple).padding(.vertical, 10).gesture(recordGesture).opacity(isRecording ? 0.5 : 1)
             }
         }
     }

@@ -12,7 +12,12 @@ struct VideoCameraView: UIViewControllerRepresentable {
     
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
-//    let startRecording:
+    @Binding var isRecording: Bool {
+        didSet{
+            print("didSet: oldValue=\(oldValue) newValue=\(isRecording)")
+            //Write code, function do what ever you want todo
+        }
+    }
     
     func makeCoordinator() -> VideoCameraView.Coordinator {
         Coordinator(self)

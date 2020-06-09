@@ -36,9 +36,9 @@
 		F86BA80424899DD200BA0BAC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80324899DD200BA0BAC /* UserService.swift */; };
 		F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */; };
 		F86BA80A2489A59400BA0BAC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA8092489A59400BA0BAC /* HomeView.swift */; };
-		F898D2FF248FF63F00FA2F8F /* VideoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898D2FE248FF63F00FA2F8F /* VideoCameraView.swift */; };
+		F898D2FF248FF63F00FA2F8F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898D2FE248FF63F00FA2F8F /* CameraView.swift */; };
 		F8D45F27248A775A0034C50D /* ViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F26248A775A0034C50D /* ViewStyles.swift */; };
-		F8D45F29248A7F9A0034C50D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F28248A7F9A0034C50D /* CameraView.swift */; };
+		F8D45F29248A7F9A0034C50D /* VideoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F28248A7F9A0034C50D /* VideoCameraView.swift */; };
 		F8D45F2E248A85F00034C50D /* BottomBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F2B248A85F00034C50D /* BottomBarItemView.swift */; };
 		F8D45F2F248A85F00034C50D /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F2C248A85F00034C50D /* BottomBar.swift */; };
 		F8D45F30248A85F00034C50D /* BottomBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F2D248A85F00034C50D /* BottomBarItem.swift */; };
@@ -84,9 +84,9 @@
 		F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 		F86BA8082489A45700BA0BAC /* Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Diary.entitlements; sourceTree = "<group>"; };
 		F86BA8092489A59400BA0BAC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		F898D2FE248FF63F00FA2F8F /* VideoCameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCameraView.swift; sourceTree = "<group>"; };
+		F898D2FE248FF63F00FA2F8F /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F8D45F26248A775A0034C50D /* ViewStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyles.swift; sourceTree = "<group>"; };
-		F8D45F28248A7F9A0034C50D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		F8D45F28248A7F9A0034C50D /* VideoCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraView.swift; sourceTree = "<group>"; };
 		F8D45F2B248A85F00034C50D /* BottomBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItemView.swift; sourceTree = "<group>"; };
 		F8D45F2C248A85F00034C50D /* BottomBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		F8D45F2D248A85F00034C50D /* BottomBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarItem.swift; sourceTree = "<group>"; };
@@ -229,8 +229,8 @@
 				F8D45F31248A8A0F0034C50D /* Home Subviews */,
 				F81CEABD248A702A00DBF5A1 /* CalendarView.swift */,
 				F81CEABF248A718500DBF5A1 /* ImagePickerView.swift */,
-				F8D45F28248A7F9A0034C50D /* CameraView.swift */,
-				F898D2FE248FF63F00FA2F8F /* VideoCameraView.swift */,
+				F898D2FE248FF63F00FA2F8F /* CameraView.swift */,
+				F8D45F28248A7F9A0034C50D /* VideoCameraView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -452,8 +452,8 @@
 				F86BA7F424899AAE00BA0BAC /* Keychain.swift in Sources */,
 				F81CEACD248A74BA00DBF5A1 /* RKCell.swift in Sources */,
 				F86BA7F924899BB500BA0BAC /* Color.swift in Sources */,
-				F898D2FF248FF63F00FA2F8F /* VideoCameraView.swift in Sources */,
-				F8D45F29248A7F9A0034C50D /* CameraView.swift in Sources */,
+				F898D2FF248FF63F00FA2F8F /* CameraView.swift in Sources */,
+				F8D45F29248A7F9A0034C50D /* VideoCameraView.swift in Sources */,
 				F81CEACE248A74BA00DBF5A1 /* RKColorSettings.swift in Sources */,
 				F8D45F33248A8A250034C50D /* TextMemoryView.swift in Sources */,
 				F8D45F37248A8A600034C50D /* CameraMemoryView.swift in Sources */,
