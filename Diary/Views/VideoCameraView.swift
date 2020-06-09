@@ -1,41 +1,44 @@
 //
-//  CameraView.swift
+//  VideoCameraView.swift
 //  Diary
 //
-//  Created by Joseph Hinkle on 6/5/20.
+//  Created by Joseph Hinkle on 6/9/20.
 //  Copyright © 2020 Joseph Hinkle. All rights reserved.
 //
 
 import SwiftUI
 
-struct CameraView: UIViewControllerRepresentable {
+struct VideoCameraView: UIViewControllerRepresentable {
     
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
+//    let startRecording:
     
-    func makeCoordinator() -> CameraView.Coordinator {
+    func makeCoordinator() -> VideoCameraView.Coordinator {
         Coordinator(self)
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<CameraView>) -> UIViewController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<VideoCameraView>) -> UIViewController {
         let cameraViewController = UIImagePickerController()
         cameraViewController.delegate = context.coordinator
         cameraViewController.sourceType = .camera
         cameraViewController.allowsEditing = false
         cameraViewController.cameraFlashMode = .auto
         cameraViewController.showsCameraControls = false
-        cameraViewController.cameraCaptureMode = .photo
+        cameraViewController.cameraCaptureMode = .video
+        
+//        cameraViewController.startVideoCapture()
         return cameraViewController
     }
     
-    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<CameraView>) {
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<VideoCameraView>) {
         
     }
     
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-        var parent: CameraView
+        var parent: VideoCameraView
         
-        init(_ cameraView: CameraView) {
+        init(_ cameraView: VideoCameraView) {
             self.parent = cameraView
         }
         
