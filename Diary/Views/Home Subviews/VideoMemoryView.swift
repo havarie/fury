@@ -17,7 +17,19 @@ struct VideoMemoryView: View {
         @State var pickedImage: Image? = nil
         
         var body: some View {
-            VStack {
+            var isDown = false
+            let recordGesture = DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
+                .onChanged { _ in
+                    if !isDown {
+                        print(">> touch down") // additional conditions might be here
+                    }
+                    isDown = true
+                }
+                .onEnded { _ in
+                    isDown = false
+                    print("<< touch up")
+                }
+            return VStack {
                 // selected photo
                 pickedImage?.resizable().scaledToFit()
                 if showCameraView {
@@ -26,11 +38,7 @@ struct VideoMemoryView: View {
                     Text("nothing")
                 }
                 // todo: square frame
-                Button(action: {
-                    self.showCalendarView = true
-                }) {
-                    Text("").makeColorCircle(colorScheme, Color.purple)
-                }.padding(.vertical, 10)
+                Text("").makeColorCircle(colorScheme, Color.purple).padding(.vertical, 10).gesture(recordGesture)
             }
         }
     }

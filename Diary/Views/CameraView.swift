@@ -12,6 +12,7 @@ struct VideoCameraView: UIViewControllerRepresentable {
     
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
+//    let startRecording:
     
     func makeCoordinator() -> VideoCameraView.Coordinator {
         Coordinator(self)
@@ -24,7 +25,9 @@ struct VideoCameraView: UIViewControllerRepresentable {
         cameraViewController.allowsEditing = false
         cameraViewController.cameraFlashMode = .auto
         cameraViewController.showsCameraControls = false
-        cameraViewController.cameraCaptureMode = .photo
+        cameraViewController.cameraCaptureMode = .video
+        
+//        cameraViewController.startVideoCapture()
         return cameraViewController
     }
     
