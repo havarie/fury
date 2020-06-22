@@ -13,8 +13,10 @@ struct VideoMemoryView: View {
         
     @Binding var showCalendarView: Bool
     
-    @State var showCameraView: Bool = true
-    @State var pickedImage: Image? = nil
+    var showCameraView: Bool {
+        return pickedVideo == nil
+    }
+    @State var pickedVideo: URL? = nil
     @State var isRecording: Bool = false
     @ObservedObject var startRecording: ObservableContainer = ObservableContainer {}
     @ObservedObject var stopRecording: ObservableContainer = ObservableContainer {}
@@ -39,10 +41,11 @@ struct VideoMemoryView: View {
                 }
             }
         return VStack {
-            // selected photo
-            pickedImage?.resizable().scaledToFit()
+            if pickedVideo != nil {
+                VideoPlayerContainerView(url: pickedVideo!)
+            }
             if showCameraView {
-                VideoCameraView(showCameraView: self.$showCameraView, pickedImage: self.$pickedImage).getAndSetRecordingFunc(self.startRecording, self.stopRecording)
+                VideoCameraView(pickedVideo: self.$pickedVideo).getAndSetRecordingFunc(self.startRecording, self.stopRecording)
                 Text("").makeColorCircle(colorScheme, Color.purple).padding(.vertical, 10).gesture(recordGesture).opacity(isRecording ? 0.5 : 1)
             } else {
                 Text("Loading...")

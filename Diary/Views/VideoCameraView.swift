@@ -11,16 +11,13 @@ import MobileCoreServices
 
 var activeCameraViewController: UIImagePickerController? = nil
 struct VideoCameraView: UIViewControllerRepresentable {
-    @Binding var showCameraView: Bool
-    @Binding var pickedImage: Image?
+    @Binding var pickedVideo: URL?
     
     func startRecording() {
         activeCameraViewController!.startVideoCapture()
     }
     func stopRecording() {
         activeCameraViewController!.stopVideoCapture()
-        
-//        showCameraView = false
     }
     
     func getAndSetRecordingFunc(_ startFunc: ObservableContainer<()->()>, _ stopFunc: ObservableContainer<()->()>) -> VideoCameraView {
@@ -60,15 +57,12 @@ struct VideoCameraView: UIViewControllerRepresentable {
         
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
-                print(videoURL)
+            if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+                self.parent.pickedVideo = videoURL
             }
-            parent.showCameraView = false
         }
         
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            parent.showCameraView = false
-        }
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {}
     }
 }
 
