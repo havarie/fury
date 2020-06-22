@@ -9,18 +9,18 @@
 import SwiftUI
 import MobileCoreServices
 
+var activeCameraViewController: UIImagePickerController? = nil
 struct VideoCameraView: UIViewControllerRepresentable {
-    @State var cameraViewController: UIImagePickerController? = nil
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
     
     func startRecording() {
-        cameraViewController?.startVideoCapture()
+        activeCameraViewController!.startVideoCapture()
     }
     func stopRecording() {
-        cameraViewController?.stopVideoCapture()
+        activeCameraViewController!.stopVideoCapture()
         
-        showCameraView = false
+//        showCameraView = false
     }
     
     func getAndSetRecordingFunc(_ startFunc: ObservableContainer<()->()>, _ stopFunc: ObservableContainer<()->()>) -> VideoCameraView {
@@ -34,17 +34,17 @@ struct VideoCameraView: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<VideoCameraView>) -> UIViewController {
-        let view = UIImagePickerController()
-        view.delegate = context.coordinator
-        view.sourceType = .camera
-        view.allowsEditing = false
-        view.cameraFlashMode = .auto
-        view.showsCameraControls = false
-        view.mediaTypes = [kUTTypeMovie as String]
-        view.cameraDevice = .front
-        view.cameraCaptureMode = .video
-        cameraViewController = view
-        return view
+        let cameraViewController = UIImagePickerController()
+        cameraViewController.delegate = context.coordinator
+        cameraViewController.sourceType = .camera
+        cameraViewController.allowsEditing = false
+        cameraViewController.cameraFlashMode = .auto
+        cameraViewController.showsCameraControls = false
+        cameraViewController.mediaTypes = [kUTTypeMovie as String]
+        cameraViewController.cameraDevice = .front
+        cameraViewController.cameraCaptureMode = .video
+        activeCameraViewController = cameraViewController
+        return cameraViewController
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<VideoCameraView>) {
@@ -58,9 +58,11 @@ struct VideoCameraView: UIViewControllerRepresentable {
             self.parent = cameraView
         }
         
+        
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            let uiImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-            parent.pickedImage = Image(uiImage: uiImage)
+            if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
+                print(videoURL)
+            }
             parent.showCameraView = false
         }
         

@@ -17,13 +17,13 @@
 		F81CEACD248A74BA00DBF5A1 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEAC6248A74BA00DBF5A1 /* RKCell.swift */; };
 		F81CEACE248A74BA00DBF5A1 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEAC7248A74BA00DBF5A1 /* RKColorSettings.swift */; };
 		F81CEACF248A74BA00DBF5A1 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CEAC8248A74BA00DBF5A1 /* RKDate.swift */; };
+		F865B48724A0F741007ABCFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F865B48624A0F741007ABCFE /* GoogleService-Info.plist */; };
 		F86BA7D62489937A00BA0BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7D52489937A00BA0BAC /* AppDelegate.swift */; };
 		F86BA7D82489937A00BA0BAC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7D72489937A00BA0BAC /* SceneDelegate.swift */; };
 		F86BA7DA2489937A00BA0BAC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7D92489937A00BA0BAC /* LoginView.swift */; };
 		F86BA7DC2489937C00BA0BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7DB2489937C00BA0BAC /* Assets.xcassets */; };
 		F86BA7DF2489937C00BA0BAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7DE2489937C00BA0BAC /* Preview Assets.xcassets */; };
 		F86BA7E22489937C00BA0BAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7E02489937C00BA0BAC /* LaunchScreen.storyboard */; };
-		F86BA7EA2489996B00BA0BAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */; };
 		F86BA7F224899AAE00BA0BAC /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7ED24899AAE00BA0BAC /* UserData.swift */; };
 		F86BA7F324899AAE00BA0BAC /* UserDataKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7EE24899AAE00BA0BAC /* UserDataKeychain.swift */; };
 		F86BA7F424899AAE00BA0BAC /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA7EF24899AAE00BA0BAC /* Keychain.swift */; };
@@ -63,6 +63,7 @@
 		F81CEAC6248A74BA00DBF5A1 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
 		F81CEAC7248A74BA00DBF5A1 /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKColorSettings.swift; sourceTree = "<group>"; };
 		F81CEAC8248A74BA00DBF5A1 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
+		F865B48624A0F741007ABCFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F86BA7D22489937A00BA0BAC /* Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F86BA7D52489937A00BA0BAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F86BA7D72489937A00BA0BAC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		F86BA7DE2489937C00BA0BAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F86BA7E12489937C00BA0BAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F86BA7E32489937C00BA0BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F86BA7ED24899AAE00BA0BAC /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F86BA7EE24899AAE00BA0BAC /* UserDataKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataKeychain.swift; sourceTree = "<group>"; };
 		F86BA7EF24899AAE00BA0BAC /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -163,8 +163,8 @@
 		F86BA7D42489937A00BA0BAC /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				F865B48624A0F741007ABCFE /* GoogleService-Info.plist */,
 				F86BA8082489A45700BA0BAC /* Diary.entitlements */,
-				F86BA7E92489996B00BA0BAC /* GoogleService-Info.plist */,
 				F86BA7D52489937A00BA0BAC /* AppDelegate.swift */,
 				F86BA7D72489937A00BA0BAC /* SceneDelegate.swift */,
 				F86BA80024899DA900BA0BAC /* AppDelegateInjection.swift */,
@@ -352,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F86BA7E22489937C00BA0BAC /* LaunchScreen.storyboard in Resources */,
-				F86BA7EA2489996B00BA0BAC /* GoogleService-Info.plist in Resources */,
+				F865B48724A0F741007ABCFE /* GoogleService-Info.plist in Resources */,
 				F86BA7DF2489937C00BA0BAC /* Preview Assets.xcassets in Resources */,
 				F86BA7DC2489937C00BA0BAC /* Assets.xcassets in Resources */,
 			);
