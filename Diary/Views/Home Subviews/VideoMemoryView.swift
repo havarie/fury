@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 import FirebaseStorage
 
 struct VideoMemoryView: View {
@@ -20,22 +21,44 @@ struct VideoMemoryView: View {
     func startUpload(videoURL: URL) {
         showUploadingView = true
         // Where we'll store the video:
-        let storageReference = Storage.storage().reference().child("video.mov")
+        if let uid = Auth.auth().currentUser?.uid {
+            let storageReference = Storage.storage().reference().child(uid).child("video.mov")
 
-        // Start the video storage process
-        let task = storageReference.putFile(from: videoURL as URL, metadata: nil, completion: nil)
-        // Add a progress observer to an upload task
-        task.observe(.progress) { snapshot in
-            // A progress event occured
-            switch snapshot.status {
-            case .success: self.uploadMessage = "Upload success..."
-            case .failure: self.uploadMessage = "Upload failed..."
-            case .pause: self.uploadMessage = "Upload paused..."
-            case .resume: self.uploadMessage = "Upload resumed..."
-            case .unknown: self.uploadMessage = "Unknown event..."
-            case .progress:
-                let percent = 100.0 * Double(snapshot.progress?.completedUnitCount ?? 0) / Double(snapshot.progress?.totalUnitCount ?? 1)
-                self.uploadMessage = "Uploading: \(percent)%"
+            // Start the video storage process
+            let task = storageReference.putFile(from: videoURL as URL, metadata: nil, completion: nil)
+            // Add a progress observer to an upload task
+            task.observe(.progress) { snapshot in
+                // A progress event occured
+                switch snapshot.status {
+                case .success: self.showCalendarView = true
+                case .failure:
+                    self.uploadMessage = "Upload failed..."
+                case .pause:
+                    self.uploadMessage = "Upload paused..."
+                    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                        self.showButtonBar = true
+                        self.showUploadingView = false
+                        self.pickedVideo = nil
+                    }
+                case .resume: self.uploadMessage = "Upload resumed..."
+                case .unknown:
+                    self.uploadMessage = "Unknown event..."
+                    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                        self.showButtonBar = true
+                        self.showUploadingView = false
+                        self.pickedVideo = nil
+                    }
+                case .progress:
+                    let percent = 100.0 * Double(snapshot.progress?.completedUnitCount ?? 0) / Double(snapshot.progress?.totalUnitCount ?? 1)
+                    self.uploadMessage = "Uploading: \(percent)%"
+                }
+            }
+        } else {
+            self.uploadMessage = "Not logged in..."
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                self.showButtonBar = true
+                self.showUploadingView = false
+                self.pickedVideo = nil
             }
         }
     }
