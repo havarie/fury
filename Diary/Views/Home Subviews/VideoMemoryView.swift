@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-//import FIRStorage
+import FirebaseStorage
 
 struct VideoMemoryView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
@@ -15,19 +15,29 @@ struct VideoMemoryView: View {
     @Binding var showCalendarView: Bool
     @Binding var showButtonBar: Bool
     
+    @State var uploadMessage: String = ""
     @State var showUploadingView: Bool = false
-    func startUpload(url: URL) {
+    func startUpload(videoURL: URL) {
+        showUploadingView = true
         // Where we'll store the video:
-//        let storageReference = FIRStorage.storage().reference().child("video.mov")
-//
-//        // Start the video storage process
-//        storageReference.putFile(videoURL as URL, metadata: nil, completion: { (metadata, error) in
-//            if error == nil {
-//                print("Successful video upload")
-//            } else {
-//                print(error?.localizedDescription)
-//            }
-//        })
+        let storageReference = Storage.storage().reference().child("video.mov")
+
+        // Start the video storage process
+        let task = storageReference.putFile(from: videoURL as URL, metadata: nil, completion: nil)
+        // Add a progress observer to an upload task
+        task.observe(.progress) { snapshot in
+            // A progress event occured
+            switch snapshot.status {
+            case .success: self.uploadMessage = "Upload success..."
+            case .failure: self.uploadMessage = "Upload failed..."
+            case .pause: self.uploadMessage = "Upload paused..."
+            case .resume: self.uploadMessage = "Upload resumed..."
+            case .unknown: self.uploadMessage = "Unknown event..."
+            case .progress:
+                let percent = 100.0 * Double(snapshot.progress?.completedUnitCount ?? 0) / Double(snapshot.progress?.totalUnitCount ?? 1)
+                self.uploadMessage = "Uploading: \(percent)%"
+            }
+        }
     }
     
     @State var pickedVideo: URL? = nil
@@ -37,7 +47,7 @@ struct VideoMemoryView: View {
     var body: some View {
         VStack {
             if showUploadingView {
-                Text("uploading...")
+                Text(self.uploadMessage)
             } else {
                 if pickedVideo == nil {
                     TakeVideoView(pickedVideo: self.$pickedVideo, isRecording: self.$isRecording, showButtonBar: self.$showButtonBar)
@@ -88,7 +98,6 @@ struct VideoMemoryUploadView: View {
     
     @Binding var pickedVideo: URL?
     @Binding var showButtonBar: Bool
-    @Binding var showUploadingView: Bool
     
     var startUpload: (URL) -> ()
 
@@ -107,8 +116,8 @@ struct VideoMemoryUploadView: View {
                 }
                 Spacer(minLength: 15)
                 Button(action: {
-                    if let url = pickedVideo {
-                        startUpload
+                    if let url = self.pickedVideo {
+                       self.startUpload(url)
                     }
                 }) {
                     Text("Upload").customTitle()
