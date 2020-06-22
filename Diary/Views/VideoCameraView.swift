@@ -10,15 +10,15 @@ import SwiftUI
 import MobileCoreServices
 
 struct VideoCameraView: UIViewControllerRepresentable {
-    var cameraViewController = UIImagePickerController()
+    @State var cameraViewController: UIImagePickerController? = nil
     @Binding var showCameraView: Bool
     @Binding var pickedImage: Image?
     
     func startRecording() {
-        cameraViewController.startVideoCapture()
+        cameraViewController?.startVideoCapture()
     }
     func stopRecording() {
-        cameraViewController.stopVideoCapture()
+        cameraViewController?.stopVideoCapture()
         
         showCameraView = false
     }
@@ -34,15 +34,17 @@ struct VideoCameraView: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<VideoCameraView>) -> UIViewController {
-        cameraViewController.delegate = context.coordinator
-        cameraViewController.sourceType = .camera
-        cameraViewController.allowsEditing = false
-        cameraViewController.cameraFlashMode = .auto
-        cameraViewController.showsCameraControls = false
-        cameraViewController.mediaTypes = [kUTTypeMovie as String]
-        cameraViewController.cameraDevice = .front
-        cameraViewController.cameraCaptureMode = .video
-        return cameraViewController
+        let view = UIImagePickerController()
+        view.delegate = context.coordinator
+        view.sourceType = .camera
+        view.allowsEditing = false
+        view.cameraFlashMode = .auto
+        view.showsCameraControls = false
+        view.mediaTypes = [kUTTypeMovie as String]
+        view.cameraDevice = .front
+        view.cameraCaptureMode = .video
+        cameraViewController = view
+        return view
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<VideoCameraView>) {
