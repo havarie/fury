@@ -22,6 +22,7 @@ struct HomeView: View {
     
     @Binding var showHome: Bool
     @State var showCalendarView: Bool = false
+    @State var showButtonBar: Bool = true
     
     @State private var selectedIndex: Int = 1
     var selectedItem: BottomBarItem {
@@ -53,13 +54,15 @@ struct HomeView: View {
                     CameraMemoryView(showCalendarView: self.$showCalendarView)
                 }
                 if selectedIndex == 2 {
-                    VideoMemoryView(showCalendarView: self.$showCalendarView)
+                    VideoMemoryView(showCalendarView: self.$showCalendarView, showButtonBar: self.$showButtonBar)
                 }
                 if selectedIndex == 3 {
                     ProfileView(showHome: self.$showHome)
                 }
                 Spacer()
-                BottomBar(selectedIndex: $selectedIndex, items: items)
+                if showButtonBar {
+                    BottomBar(selectedIndex: $selectedIndex, items: items)
+                }
             }.avoidKeyboard()
         }
         .navigationBarTitle(Text(title), displayMode: .inline)

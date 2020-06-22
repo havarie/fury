@@ -128,6 +128,8 @@ struct VideoPlayerControlsView : View {
             Slider(value: $videoPos, in: 0...1, onEditingChanged: sliderEditingChanged)
             // Video duration
             Text("\(Utility.formatSecondsToHMS(videoDuration))")
+        }.onAppear {
+            self.player.play()
         }
         .padding(.leading, 10)
         .padding(.trailing, 10)

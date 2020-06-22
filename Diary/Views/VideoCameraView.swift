@@ -11,6 +11,7 @@ import MobileCoreServices
 
 var activeCameraViewController: UIImagePickerController? = nil
 struct VideoCameraView: UIViewControllerRepresentable {
+    @Binding var isWaitingForVideo: Bool
     @Binding var pickedVideo: URL?
     
     func startRecording() {
@@ -59,6 +60,7 @@ struct VideoCameraView: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
                 self.parent.pickedVideo = videoURL
+                self.parent.isWaitingForVideo = false
             }
         }
         
