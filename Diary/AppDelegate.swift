@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 import FirebaseMessaging
+import UserNotifications
+import FirebaseInstanceID
+
+var deviceTokenString: String? = nil
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -81,7 +85,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-      print("APNs token retrieved: \(deviceToken)")
+        print("APNs token retrieved: \(deviceToken)")
+        Messaging.messaging().apnsToken = deviceToken
+        deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
 
       // With swizzling disabled you must set the APNs token here.
       // Messaging.messaging().apnsToken = deviceToken

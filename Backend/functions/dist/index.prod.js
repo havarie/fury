@@ -1,0 +1,1 @@
+"use strict";var functions=require("firebase-functions");exports.helloWorld=functions.https.onRequest(function(e,s){s.send("Hello from Firebase!")});

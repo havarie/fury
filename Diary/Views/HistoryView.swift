@@ -14,7 +14,7 @@ let memoriesRef = db.collection("memories")
 
 struct HistoryView: View {
     
-    let user = Auth.auth().currentUser!
+    let user = Auth.auth().currentUser
     
     var body: some View {
         VStack {
@@ -22,9 +22,11 @@ struct HistoryView: View {
                 .padding(.bottom, 10)
             
         }.onAppear {
-            let query = memoriesRef
-                .whereField("owner", isEqualTo: self.user.uid)
-                .whereField("notificationUTC", isLessThan: 1000000)
+            if let uid = self.user?.uid {
+                let query = memoriesRef
+                    .whereField("owner", isEqualTo: uid)
+                    .whereField("notificationTimestamp", isLessThan: 1000000)
+            }
         }
     }
 }
