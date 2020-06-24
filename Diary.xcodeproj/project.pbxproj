@@ -37,6 +37,8 @@
 		F86BA80424899DD200BA0BAC /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80324899DD200BA0BAC /* UserService.swift */; };
 		F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */; };
 		F86BA80A2489A59400BA0BAC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86BA8092489A59400BA0BAC /* HomeView.swift */; };
+		F87C19F424A3B76B00CE9DD5 /* ViewMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C19F324A3B76B00CE9DD5 /* ViewMemoryView.swift */; };
+		F87C19F624A3B78000CE9DD5 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87C19F524A3B78000CE9DD5 /* HistoryView.swift */; };
 		F898D2FF248FF63F00FA2F8F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898D2FE248FF63F00FA2F8F /* CameraView.swift */; };
 		F8D45F27248A775A0034C50D /* ViewStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F26248A775A0034C50D /* ViewStyles.swift */; };
 		F8D45F29248A7F9A0034C50D /* VideoCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D45F28248A7F9A0034C50D /* VideoCameraView.swift */; };
@@ -86,6 +88,8 @@
 		F86BA80624899E2200BA0BAC /* FirestoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreHelper.swift; sourceTree = "<group>"; };
 		F86BA8082489A45700BA0BAC /* Diary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Diary.entitlements; sourceTree = "<group>"; };
 		F86BA8092489A59400BA0BAC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F87C19F324A3B76B00CE9DD5 /* ViewMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMemoryView.swift; sourceTree = "<group>"; };
+		F87C19F524A3B78000CE9DD5 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		F898D2FE248FF63F00FA2F8F /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F8D45F26248A775A0034C50D /* ViewStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyles.swift; sourceTree = "<group>"; };
 		F8D45F28248A7F9A0034C50D /* VideoCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCameraView.swift; sourceTree = "<group>"; };
@@ -228,6 +232,8 @@
 				F86BA7FB24899C2C00BA0BAC /* ActivityIndicatorView.swift */,
 				F86BA7D92489937A00BA0BAC /* LoginView.swift */,
 				F86BA8092489A59400BA0BAC /* HomeView.swift */,
+				F87C19F324A3B76B00CE9DD5 /* ViewMemoryView.swift */,
+				F87C19F524A3B78000CE9DD5 /* HistoryView.swift */,
 				F8D45F31248A8A0F0034C50D /* Home Subviews */,
 				F81CEABD248A702A00DBF5A1 /* CalendarView.swift */,
 				F81CEABF248A718500DBF5A1 /* ImagePickerView.swift */,
@@ -440,6 +446,7 @@
 				F8D45F2E248A85F00034C50D /* BottomBarItemView.swift in Sources */,
 				F8D45F35248A8A4C0034C50D /* VideoMemoryView.swift in Sources */,
 				F86BA80724899E2200BA0BAC /* FirestoreHelper.swift in Sources */,
+				F87C19F424A3B76B00CE9DD5 /* ViewMemoryView.swift in Sources */,
 				F81CEACF248A74BA00DBF5A1 /* RKDate.swift in Sources */,
 				F8D45F27248A775A0034C50D /* ViewStyles.swift in Sources */,
 				F86BA7DA2489937A00BA0BAC /* LoginView.swift in Sources */,
@@ -451,6 +458,7 @@
 				F81CEACB248A74BA00DBF5A1 /* RKWeekdayHeader.swift in Sources */,
 				F865B48924A10212007ABCFE /* VideoPlayerContainerView.swift in Sources */,
 				F8D45F2F248A85F00034C50D /* BottomBar.swift in Sources */,
+				F87C19F624A3B78000CE9DD5 /* HistoryView.swift in Sources */,
 				F81CEAC9248A74BA00DBF5A1 /* RKViewController.swift in Sources */,
 				F8D45F39248A8D240034C50D /* ProfileView.swift in Sources */,
 				F86BA7F424899AAE00BA0BAC /* Keychain.swift in Sources */,

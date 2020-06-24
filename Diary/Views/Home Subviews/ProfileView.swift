@@ -19,8 +19,7 @@ struct ProfileView: View {
     
     var body: some View {
         // for showing login information
-        VStack {
-            Spacer()
+        ScrollView {
             Text("Logged in as:").customTitle()
                 .padding(.bottom, 10)
             Text("\(self.user?.email ?? "unknown")").customText(colorScheme)
@@ -35,7 +34,8 @@ struct ProfileView: View {
             }, label: {
                 Text("Logout").customSubtitle(colorScheme)
             })
-            Spacer()
+            Spacer(minLength: 10)
+            HistoryView()
         }
     }
 }
