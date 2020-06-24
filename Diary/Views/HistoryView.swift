@@ -7,15 +7,24 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 import FirebaseFirestore
 
+let memoriesRef = db.collection("memories")
+
 struct HistoryView: View {
+    
+    let user = Auth.auth().currentUser!
     
     var body: some View {
         VStack {
             Text("History").customTitle()
                 .padding(.bottom, 10)
             
+        }.onAppear {
+            let query = memoriesRef
+                .whereField("owner", isEqualTo: self.user.uid)
+                .whereField("notificationUTC", isLessThan: 1000000)
         }
     }
 }
