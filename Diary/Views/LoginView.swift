@@ -55,16 +55,6 @@ struct LoginView: View {
                     print("Transaction successfully committed!")
                 }
             }
-//            usersRef.document(user.uid).setData([
-//                "test2": "cool",
-//                "notificationTokens": [deviceTokenString]
-//            ]) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err)")
-//                } else {
-//                    print("Document successfully written!")
-//                }
-//            }
         }
     }
     
