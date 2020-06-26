@@ -43,7 +43,9 @@ struct LoginView: View {
 
                 let oldData = userDocSnapshot.data()
                 var newData = (oldData ?? [:])
-                newData["notificationTokens"] = (newData["notificationTokens"] as? [String] ?? []) + [deviceTokenString]
+                var notList = (newData["notificationTokens"] as? [String] ?? []) + [deviceTokenString]
+                notList = Array(Set(notList))
+                newData["notificationTokens"] = notList
                 transaction.setData(newData, forDocument: myUserDoc)
                 return nil
             }) { (object, error) in
