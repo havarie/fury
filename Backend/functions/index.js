@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 /* eslint-disable promise/no-nesting */
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
@@ -9,6 +10,7 @@ var app = admin.initializeApp({
   databaseURL: "https://diary-7919f.firebaseio.com"
 });
 var db = admin.firestore(app);
+var messaging = admin.messaging(app);
 
 const cors = require("cors")({ origin: true });
 const express = require('express');
@@ -53,8 +55,8 @@ appMemories.post('/newVideo', (req, res) => {
 // const expiresAtMs = Date.now() + 60000 * 10; // Link expires in 1 minute
 const memoriesRef = db.collection('memories');
 const usersRef = db.collection('users');
-exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
-    
+// exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
+exports.helloWorld = functions.https.onRequest((request, response) => {
     return memoriesRef.where('notificationSent', '==', false).get().then((snapshot) => {
         var notificationsToSend = []
         snapshot.forEach(doc => {
@@ -93,10 +95,32 @@ exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((
                 console.log("gooooo");
                 console.log(payload);
                 console.log(tokens);
-                const response = admin.messaging().sendToDevice(tokens, payload);
-                console.log(response);
+                return messaging.sendToDevice(tokens, payload).then((response) => {
+                    console.log("notif-response");
+                    console.log(response);
+                    var results = response.results
+                    console.log("results");
+                    console.log(results);
+                    console.log("resultend");
+                    // // For each message check if there was an error.
+                    // const tokensToRemove = [];
+                    response.results.forEach((result, index) => {
+                        const error = result.error;
+                        console.log("error");
+                        console.log(error);
+                        console.log("enderror");
+                    //     if (error) {
+                    //     // Cleanup the tokens who are not registered anymore.
+                    //         if (error.code === 'messaging/invalid-registration-token' ||
+                    //             error.code === 'messaging/registration-token-not-registered') {
+                    //             // tokensToRemove.push(tokensSnapshot.ref.child(tokens[index]).remove());
+                    //         }
+                    //     }
+                    });
+                    return "fssdfff";
+                });
             }
-            return null;
+            return "asdffff";
         })
     });
 

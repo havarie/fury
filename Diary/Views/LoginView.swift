@@ -12,6 +12,7 @@ import CryptoKit
 import Resolver
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseInstanceID
 
 let usersRef = db.collection("users")
 
@@ -31,28 +32,37 @@ struct LoginView: View {
     
     func associateFirebaseUserWithNotificationToken() {
         if let user = Auth.auth().currentUser {
-            let myUserDoc = usersRef.document(user.uid)
-            db.runTransaction({ (transaction, errorPointer) -> Any? in
-                let userDocSnapshot: DocumentSnapshot
-                do {
-                    try userDocSnapshot = transaction.getDocument(myUserDoc)
-                } catch let fetchError as NSError {
-                    errorPointer?.pointee = fetchError
-                    return nil
-                }
-
-                let oldData = userDocSnapshot.data()
-                var newData = (oldData ?? [:])
-                var notList = (newData["notificationTokens"] as? [String] ?? []) + [deviceTokenString]
-                notList = Array(Set(notList))
-                newData["notificationTokens"] = notList
-                transaction.setData(newData, forDocument: myUserDoc)
-                return nil
-            }) { (object, error) in
+            InstanceID.instanceID().instanceID { (result, error) in
                 if let error = error {
-                    print("Transaction failed: \(error)")
-                } else {
-                    print("Transaction successfully committed!")
+                    print("Error fetching remote instance ID: \(error)")
+                } else if let result = result {
+                    print("Remote instance ID token: \(result.token)")
+                    deviceTokenString = result.token
+
+                    let myUserDoc = usersRef.document(user.uid)
+                    db.runTransaction({ (transaction, errorPointer) -> Any? in
+                        let userDocSnapshot: DocumentSnapshot
+                        do {
+                            try userDocSnapshot = transaction.getDocument(myUserDoc)
+                        } catch let fetchError as NSError {
+                            errorPointer?.pointee = fetchError
+                            return nil
+                        }
+
+                        let oldData = userDocSnapshot.data()
+                        var newData = (oldData ?? [:])
+                        var notList = (newData["notificationTokens"] as? [String] ?? []) + [deviceTokenString]
+                        notList = Array(Set(notList))
+                        newData["notificationTokens"] = notList
+                        transaction.setData(newData, forDocument: myUserDoc)
+                        return nil
+                    }) { (object, error) in
+                        if let error = error {
+                            print("Transaction failed: \(error)")
+                        } else {
+                            print("Transaction successfully committed!")
+                        }
+                    }
                 }
             }
         }

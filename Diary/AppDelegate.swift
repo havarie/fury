@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         Messaging.messaging().delegate = self
+        Messaging.messaging().isAutoInitEnabled = true
         
         if #available(iOS 10.0, *) {
           // For iOS 10 display notification (sent via APNS)
@@ -40,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
           application.registerUserNotificationSettings(settings)
         }
+
 
         application.registerForRemoteNotifications()
         
@@ -86,8 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs token retrieved: \(deviceToken)")
-        Messaging.messaging().apnsToken = deviceToken
-        deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+//        Messaging.messaging().apnsToken = deviceToken
+//        deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
 
       // With swizzling disabled you must set the APNs token here.
       // Messaging.messaging().apnsToken = deviceToken
@@ -159,6 +161,7 @@ extension AppDelegate : MessagingDelegate {
     
     let dataDict:[String: String] = ["token": fcmToken]
     NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    deviceTokenString = fcmToken
     // TODO: If necessary send token to application server.
     // Note: This callback is fired at each app startup and whenever a new token is generated.
   }
