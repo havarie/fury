@@ -25,7 +25,45 @@ struct LoginView: View {
     
     init() {
         // if already logged in, skip the animation
+        associateFirebaseUserWithNotificationToken()
         UINavigationBar.setAnimationsEnabled(Auth.auth().currentUser == nil)
+    }
+    
+    func associateFirebaseUserWithNotificationToken() {
+        if let user = Auth.auth().currentUser {
+            let myUserDoc = usersRef.document(user.uid)
+            db.runTransaction({ (transaction, errorPointer) -> Any? in
+                let userDocSnapshot: DocumentSnapshot
+                do {
+                    try userDocSnapshot = transaction.getDocument(myUserDoc)
+                } catch let fetchError as NSError {
+                    errorPointer?.pointee = fetchError
+                    return nil
+                }
+
+                let oldNotificationTokens = userDocSnapshot.data()?["notificationTokens"] as? [String] ?? []
+
+                let newNotificationTokens = oldNotificationTokens + [deviceTokenString]
+                transaction.updateData(["notificationTokens": newNotificationTokens], forDocument: myUserDoc)
+                return nil
+            }) { (object, error) in
+                if let error = error {
+                    print("Transaction failed: \(error)")
+                } else {
+                    print("Transaction successfully committed!")
+                }
+            }
+//            usersRef.document(user.uid).setData([
+//                "test2": "cool",
+//                "notificationTokens": [deviceTokenString]
+//            ]) { err in
+//                if let err = err {
+//                    print("Error writing document: \(err)")
+//                } else {
+//                    print("Document successfully written!")
+//                }
+//            }
+        }
     }
     
     var body: some View {
@@ -58,21 +96,9 @@ struct LoginView: View {
                     SignInWithAppleToFirebase() { response in
                         self.isLoading = response == .loading
                         if response == .success {
-                            if let user = Auth.auth().currentUser {
-                                usersRef.document(user.uid).setData([
-                                    "test": "cool",
-                                    "notificationTokens": [deviceTokenString]
-                                ]) { err in
-                                    if let err = err {
-                                        print("Error writing document: \(err)")
-                                    } else {
-                                        print("Document successfully written!")
-                                    }
-                                }
-
-                                self.userService.refresh()
-                                self.showHome = true
-                            }
+                            self.associateFirebaseUserWithNotificationToken()
+                            self.userService.refresh()
+                            self.showHome = true
                         }
                     }
                     .frame(minWidth: 200, idealWidth: 250, maxWidth: 400, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center).padding(25)
