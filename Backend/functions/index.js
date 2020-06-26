@@ -1,3 +1,4 @@
+/* eslint-disable promise/no-nesting */
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
@@ -50,17 +51,81 @@ appMemories.post('/newVideo', (req, res) => {
 
 });
 // const expiresAtMs = Date.now() + 60000 * 10; // Link expires in 1 minute
-
-exports.addVideo = functions.https.onRequest((request, response) => {
-    // Add a new document with a generated id.
-    db.collection('memories').add({
-        owner: 'Tokyo',
-        country: 'Japan'
+const memoriesRef = db.collection('memories');
+const usersRef = db.collection('users');
+exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
+    
+    return memoriesRef.where('notificationSent', '==', false).get().then((snapshot) => {
+        var notificationsToSend = []
+        snapshot.forEach(doc => {
+            const myMemory = doc.data()
+            const ownerUid = myMemory.owner
+            const mediaType = myMemory.type
+            const videoName = myMemory.videoName
+            notificationsToSend.push({
+                ownerUid: ownerUid,
+                mediaType: mediaType,
+                videoName: videoName,
+            })
+        });
+        return notificationsToSend;
+    }).then((notificationsToSend) => {
+        var promises = []
+        notificationsToSend.forEach(notif => {
+            console.log("add to list "+notif.ownerUid)
+            promises.push(usersRef.doc(notif.ownerUid).get())
+        });
+        return Promise.all(promises).then((userDatas) => {
+            console.log("userDatas")
+            console.log(userDatas)
+            for (i = 0; i < userDatas.length; i++) { 
+                const payload = {
+                    notification: {
+                        title: 'Test!',
+                        body: `${notificationsToSend[i].videoName} notifs.`
+                    }
+                };
+                console.log("userDatas[i]");
+                console.log(i);
+                console.log(userDatas[i]);
+                console.log(userDatas[i].data());
+                const tokens = userDatas[i].data().notificationTokens                
+                console.log("gooooo");
+                console.log(payload);
+                console.log(tokens);
+                const response = admin.messaging().sendToDevice(tokens, payload);
+                console.log(response);
+            }
+            return null;
+        })
     });
 
+    
+    // const snapshot = memoriesRef.where('notificationSent', '==', false).get();
+    // if (snapshot.empty) {
+    //     console.log('No matching documents.');
+    //     return;
+    // }  
 
-    // response.send("Hello from Firebase " + res.id + "!");
-});
+    // snapshot.forEach(doc => {
+    //     console.log(doc.id, '=>', doc.data());
+    //     db.collection('memories').add({
+    //         owner: 'send not to '+ doc.data().owner,
+    //         place: 'lol ' + doc.data().type
+    //     });
+    // });
+  });
+
+// exports.addVideo = functions.https.onRequest((request, response) => {
+//     // Add a new document with a generated id.
+//     db.collection('memories').add({
+//         owner: 'Tokyo',
+//         country: 'Japan'
+//     });
+
+
+//     // response.send("Hello from Firebase " + res.id + "!");
+// });
 
 
 // exports.helloWorld = functions.https.onRequest((request, response) => {
