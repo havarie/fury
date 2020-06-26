@@ -24,6 +24,10 @@ struct HomeView: View {
     @State var showCalendarView: Bool = false
     @State var showButtonBar: Bool = true
     
+    @State var videoPath: String = ""
+    
+    @State var showVideoMemoryView: Bool = false
+    
     @State private var selectedIndex: Int = 1
     var selectedItem: BottomBarItem {
         items[selectedIndex]
@@ -33,10 +37,10 @@ struct HomeView: View {
         items[selectedIndex].title
     }
     
-
+    
     var body: some View {
         ZStack {
-            NavigationLink(destination: CalendarView(), isActive: self.$showCalendarView) {
+            NavigationLink(destination: CalendarView(showCalendarView: self.$showCalendarView, videoPath: self.$videoPath), isActive: self.$showCalendarView) {
                 EmptyView()
             }
             VStack {
@@ -54,7 +58,7 @@ struct HomeView: View {
                     CameraMemoryView(showCalendarView: self.$showCalendarView)
                 }
                 if selectedIndex == 2 {
-                    VideoMemoryView(showCalendarView: self.$showCalendarView, showButtonBar: self.$showButtonBar)
+                    VideoMemoryView(showCalendarView: self.$showCalendarView, videoPath: self.$videoPath, showButtonBar: self.$showButtonBar)
                 }
                 if selectedIndex == 3 {
                     ProfileView(showHome: self.$showHome)
@@ -64,6 +68,8 @@ struct HomeView: View {
                     BottomBar(selectedIndex: $selectedIndex, items: items)
                 }
             }.avoidKeyboard()
+        }.sheet(isPresented: self.$showVideoMemoryView) {
+            ViewMemoryView(videoPath: self.$videoPath)
         }
         .navigationBarTitle(Text(title), displayMode: .inline)
         .navigationBarBackButtonHidden(true)
@@ -76,6 +82,10 @@ struct HomeView: View {
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+            handleNotification = { videoPath in
+                self.videoPath = videoPath
+                self.showVideoMemoryView = true
             }
         }
     }

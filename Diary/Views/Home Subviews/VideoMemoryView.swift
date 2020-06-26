@@ -14,6 +14,7 @@ struct VideoMemoryView: View {
     @Environment (\.colorScheme) var colorScheme: ColorScheme
         
     @Binding var showCalendarView: Bool
+    @Binding var videoPath: String
     @Binding var showButtonBar: Bool
     
     @State var uploadMessage: String = ""
@@ -22,15 +23,18 @@ struct VideoMemoryView: View {
         showUploadingView = true
         // Where we'll store the video:
         if let uid = Auth.auth().currentUser?.uid {
-            let storageReference = Storage.storage().reference().child(uid).child("video.mov")
+            let videoName = "\(UUID().uuidString).mov"
+            let storageReference = Storage.storage().reference().child(uid).child(videoName)
+            videoPath = videoName
 
             // Start the video storage process
-            let task = storageReference.putFile(from: videoURL as URL, metadata: nil, completion: nil)
+            let task = storageReference.putFile(from: videoURL)
             // Add a progress observer to an upload task
             task.observe(.progress) { snapshot in
                 // A progress event occured
                 switch snapshot.status {
-                case .success: self.showCalendarView = true
+                case .success:
+                    self.showCalendarView = true
                 case .failure:
                     self.uploadMessage = "Upload failed..."
                 case .pause:
@@ -50,7 +54,14 @@ struct VideoMemoryView: View {
                     }
                 case .progress:
                     let percent = 100.0 * Double(snapshot.progress?.completedUnitCount ?? 0) / Double(snapshot.progress?.totalUnitCount ?? 1)
-                    self.uploadMessage = "Uploading: \(percent)%"
+                    if snapshot.progress?.completedUnitCount == snapshot.progress?.totalUnitCount {
+                        self.showCalendarView = true
+                        self.showButtonBar = true
+                        self.showUploadingView = false
+                        self.pickedVideo = nil
+                    } else {
+                        self.uploadMessage = "Uploading: \(percent)%"
+                    }
                 }
             }
         } else {

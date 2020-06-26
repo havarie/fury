@@ -35,7 +35,7 @@ struct ProfileView: View {
                 Text("Logout").customSubtitle(colorScheme)
             })
             Spacer(minLength: 10)
-            HistoryView()
+//            HistoryView()
         }
     }
 }

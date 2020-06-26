@@ -13,6 +13,7 @@ import UserNotifications
 import FirebaseInstanceID
 
 var deviceTokenString: String? = nil
+var handleNotification: ((_ videoPath: String) -> ())? = nil
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -148,6 +149,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     // Print full message.
     print(userInfo)
+    
+    if let videoName = userInfo["videoName"] as? String {
+        handleNotification?(videoName)
+    }
+    
 
     completionHandler()
   }

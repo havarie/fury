@@ -7,15 +7,37 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseStorage
 
 struct ViewMemoryView: View {
+    @Binding var videoPath: String
+    @State var pickedUrl: URL? = nil
+    func downloadAndShow() {
+        if let uid = Auth.auth().currentUser?.uid {
+            let storageReference = Storage.storage().reference().child(uid).child(videoPath)
+            var fileUrl: URL = URL(fileURLWithPath: NSTemporaryDirectory())
+            fileUrl.appendPathComponent(videoPath)
+            let downloadTask = storageReference.write(toFile: fileUrl) { url, error in
+                if let error = error {
+                    // Uh-oh, an error occurred!
+                    print("error")
+                } else {
+                    self.pickedUrl = fileUrl
+                }
+            }
+        }
+    }
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Group {
+            if pickedUrl != nil {
+                VideoPlayerContainerView(url: pickedUrl!)
+            } else {
+                Text("Downloading memory...")
+            }
+        }.onAppear {
+            self.downloadAndShow()
+        }
     }
 }
 
-struct ViewMemoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        ViewMemoryView()
-    }
-}
